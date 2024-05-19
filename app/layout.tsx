@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { NextUi } from "./provider";
 import { CounterStoreProvider } from "./store/store-provider";
+import Header from "./components/header.component";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextUi>
           <CounterStoreProvider>
+            <Header></Header>
             {children}
           </CounterStoreProvider>
         </NextUi>
