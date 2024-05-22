@@ -3,8 +3,12 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
+interface ThreeSceneProps {
+    width?: number;
+    height?: number;
+  }
 
-const ThreeScene: React.FC = (props:any) => {
+const ThreeScene: React.FC<ThreeSceneProps> = ({width, height}) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

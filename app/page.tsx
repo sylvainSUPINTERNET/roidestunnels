@@ -19,7 +19,7 @@ export default function Home() {
   return (
 
     <div>
-      <ThreeScene renderWidth={600}></ThreeScene>
+      <ThreeScene width={600} height={600}></ThreeScene>
     </div>
 
 
