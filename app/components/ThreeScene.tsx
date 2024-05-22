@@ -57,7 +57,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = ({width, height}) => {
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 
-      const renderer = new THREE.WebGLRenderer({alpha:true});
+      const renderer = new THREE.WebGLRenderer({alpha:true, antialias: true});
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
       //@ts-ignore
