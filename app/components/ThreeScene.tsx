@@ -55,6 +55,13 @@ const ThreeScene: React.FC<ThreeSceneProps> = ({width, height}) => {
   }, []);
 
 
-  return <div ref={containerRef}/>;
+  return <div ref={containerRef} className="relative w-[600px] h-[600px]">
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
+        <div className="p-4 bg-white rounded shadow-lg pointer-events-auto">
+          <h1 className="text-xl font-bold">Overlay Card</h1>
+          <p className="mt-2">This is a card overlaying the Three.js scene.</p>
+        </div>
+      </div>
+  </div>;
 };
 export default ThreeScene;
