@@ -4,7 +4,7 @@ import { IoMdCart } from "react-icons/io";
 
 const Header = () => {
     return (
-        <div>
+        <div className="mt-5">
             <Navbar>
                 <NavbarBrand>
                     <AcmeLogo />
@@ -16,7 +16,7 @@ const Header = () => {
                             Features
                         </Link>
                     </NavbarItem> */}
-                    <NavbarItem>
+                    {/* <NavbarItem>
                         <Link href="#" aria-current="page" className="text-xl font-medium">
                             Fleurs
                         </Link>
@@ -25,7 +25,7 @@ const Header = () => {
                     <Link href="#" className="text-xl font-medium">
                         Huile
                     </Link>
-                    </NavbarItem>
+                    </NavbarItem> */}
                 </NavbarContent>
                 <NavbarContent justify="end">
 {/*                     

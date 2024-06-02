@@ -20,33 +20,46 @@ const ThreeScene: React.FC<ThreeSceneProps> = ({width, height}) => {
 
       loader.loadAsync('./models/scene.gltf').then((gltf) => {
         const model = gltf.scene;
-
+        console.log(model);
         
-        const factor = 0.15;
-        model.scale.set(factor*2.5, factor, factor);
-        model.position.set(-2.5, -1, 0);
-        model.rotateY(0.0 * Math.PI);
-        model.rotateX(0.1 * Math.PI);
+        model.scale.set(1, 1, 1);
+        model.position.set(0, -0.9, 0);
+        model.rotateY(0.01 * Math.PI);
+        model.rotateX(0.10 * Math.PI);
         
 
         model.traverse((node:any) => {
             if (node.isMesh) {
-              node.material.roughness = 0.5; // Adjust as needed
-              node.material.metalness = 0.5; // Adjust as needed
+              node.material.roughness = -1; // Adjust as needed
+              node.material.metalness = -1; // Adjust as needed
             }
           });
 
 
         scene.add( gltf.scene );
       });
-      const light = new THREE.AmbientLight( 0xc0c0c0 );
+
       const scene = new THREE.Scene();
-      scene.add(light);
 
-      const directionalLight = new THREE.DirectionalLight(0xc0c0c0, 1);
-      directionalLight.position.set(5, 5, 5).normalize();
-      scene.add(directionalLight);
+      // Lumière ambiante pour un éclairage global doux
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+      scene.add(ambientLight);
 
+      // Lumière directionnelle pour des reflets intenses et des ombres nettes
+      const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0);
+      directionalLight1.position.set(10, 10, 10);
+      scene.add(directionalLight1);
+
+      const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+      directionalLight2.position.set(-10, 10, -10);
+      scene.add(directionalLight2);
+
+      // Lumière ponctuelle pour des reflets brillants spécifiques
+      const pointLight = new THREE.PointLight(0xffffff, 2, 50);
+      pointLight.position.set(5, 5, 5);
+      scene.add(pointLight);
+
+      
 
     //   const g = new THREE.PlaneGeometry( 900, 900 );
     //   const m = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide} );
@@ -54,16 +67,16 @@ const ThreeScene: React.FC<ThreeSceneProps> = ({width, height}) => {
     //   plane.position.set(0, 0, -2);
     //   scene.add( plane );
  
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 
       const renderer = new THREE.WebGLRenderer({alpha:true, antialias: true});
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
-      //@ts-ignore
-        renderer.outputEncoding = THREE.sRGBEncoding;
+        // renderer.outputEncoding = THREE.sRGBEncoding;
       const controls = new OrbitControls( camera, renderer.domElement );
       //controls.enableDamping = true;
+      controls.enabled = false; // Disable controls for now
 
       renderer.setSize(width ?? window.innerWidth, height ?? window.innerHeight);
       containerRef.current?.appendChild(renderer.domElement);
@@ -106,7 +119,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = ({width, height}) => {
   }, []);
 
 
-  return <div ref={containerRef} className="relative w-[600px] h-[600px]">
+  return <div ref={containerRef} >
+      {/*className="relative w-full h-full"> */}
           {/* <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
                 <div className="p-4 bg-white rounded shadow-lg pointer-events-auto">
                 <h1 className="text-xl font-bold">Overlay Card</h1>

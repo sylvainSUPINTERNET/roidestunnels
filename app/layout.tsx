@@ -24,6 +24,11 @@ export default function RootLayout({
           <CounterStoreProvider>
             <Header></Header>
             {children}
+            <footer className="bg-gray-800 text-white text-center p-4 mt-[2em]">
+              <div>
+                <p>OK</p>
+              </div>
+            </footer>
           </CounterStoreProvider>
         </NextUi>
       </body>
