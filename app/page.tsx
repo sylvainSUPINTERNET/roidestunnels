@@ -6,6 +6,8 @@ import {Select, SelectSection, SelectItem} from "@nextui-org/select";
 import React from "react";
 import ThreeScene from "./components/ThreeScene";
 import {Image} from "@nextui-org/react";
+import { CiDollar } from "react-icons/ci";
+import { FaCannabis } from "react-icons/fa";
 
 export default function Home() {
 
@@ -33,8 +35,12 @@ export default function Home() {
         <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
             <Card className="col-span-12 sm:col-span-4 h-[300px]">
               <CardHeader className="absolute z-10 top-0 flex-col !items-start isolate bg-gradient-to-r from-indigo-500/60 via-purple-500/60 to-pink-500/60 shadow-lg ">
-                <h4 className="text-black uppercase font-bold">Moon Rock</h4>
-                <p className="text-black font-bold text-tiny">Green-House FRANCE</p>
+                <div>
+                  <h4 className="text-black uppercase font-bold">Moon Rock</h4>
+                  <p className="text-black font-bold text-tiny">
+                    <CiDollar size={40} color="yellow"></CiDollar>
+                  </p>
+                </div>
               </CardHeader>
               <Image
                 removeWrapper
@@ -42,14 +48,15 @@ export default function Home() {
                 className="z-0 w-full h-full object-cover"
                 src="https://www.budsking.com/cdn/shop/products/cbdmoonrocks2_1200x1200.png?v=1667218347"
               />
-              <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-                <div>
-                  <p className="text-black text-tiny">(12.90€) - 5g</p>
-                  <p className="text-black text-tiny">(12.90€) - 10g</p>
-                  <p className="text-black text-tiny">(12.90€) - 25g</p>
+              <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 ">
+                <div className="w-full flex justify-center items-center">
+                  <p className="text-black text-medium flex space-x-1 items-center">
+                    <FaCannabis color={"#48e08a"} size={34}/>
+                    <span>0.3%</span>
+                  </p>
                 </div>
-                <Button className="bg-black" color="primary" radius="full" size="sm">
-                  Ajouter au panier
+                <Button className="bg-black w-full " color="primary" radius="full" size="sm">
+                  Ajouter
                 </Button>
               </CardFooter>
             </Card>
