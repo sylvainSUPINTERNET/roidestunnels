@@ -30,7 +30,6 @@ export default function Home() {
       <div>
       </div>
     
-      
       <div className="flex items-center justify-center center-content mt-5">
         <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
             <Card className="col-span-12 sm:col-span-4 h-[300px]">
