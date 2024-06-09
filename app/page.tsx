@@ -14,6 +14,7 @@ export interface Product {
     name: string;
     price: number;
     image: string;
+    description: string;
 }
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
 
   const [currentProduct, setCurrentProduct] = React.useState<Product>({
     name: "",
+    description: "",
     price: 0,
     image: ""
   });
@@ -51,23 +53,48 @@ export default function Home() {
               <>
                 <ModalHeader className="flex flex-col gap-1">{currentProduct.name}</ModalHeader>
                 <ModalBody>
-                  <p> 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                  </p>
+                  <div className="flex justify-center">
+                    <Image 
+                          width={160}
+                          height={160}
+                    src={currentProduct.image}>
+                    </Image>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <Select
+                        label="Poids"
+                        placeholder="Choisissez votre poids"
+                        className="max-w-xs"
+                      >
+                        {[{key:"5g",label: "5g"}].map((animal) => (
+                          <SelectItem key={animal.key}>
+                            {animal.label}
+                          </SelectItem>
+                        ))}
+                      </Select>
+                  </div>
+                  <div className="flex justify-center">
+                  <Input
+                      type="number"
+                      label="Price"
+                      placeholder="0.00"
+                      labelPlacement="outside"
+                      startContent={
+                        <div className="pointer-events-none flex items-center">
+                          <span className="text-default-400 text-small">$</span>
+                        </div>
+                      }
+                    />
+                  </div>
+
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
-                    Close
-                  </Button>
+                  {/* <Button color="danger" variant="light" onPress={onClose}>
+                    Fermer
+                  </Button> */}
                   <Button color="primary" onPress={onClose}>
-                    Action
+                    Confirmer
                   </Button>
                 </ModalFooter>
               </>
@@ -116,7 +143,8 @@ export default function Home() {
                   setCurrentProduct(prevProduct => ({
                     name: "OG Kush",
                     price: 10,
-                    image: "https://leafly-cms-production.imgix.net/wp-content/uploads/2017/11/12113733/moon-rocks-1.jpg"
+                    image: "https://leafly-cms-production.imgix.net/wp-content/uploads/2017/11/12113733/moon-rocks-1.jpg",
+                    description: ""
                   }));
                   onOpen();
                 }} className="font-bold text-sm  bg-black text-white" color="primary" radius="full" size="sm" isDisabled={true}>
@@ -150,7 +178,8 @@ export default function Home() {
                   setCurrentProduct(prevProduct => ({
                     name: "Gelato",
                     price: 10,
-                    image: "https://leafly-cms-production.imgix.net/wp-content/uploads/2017/11/12113733/moon-rocks-1.jpg"
+                    image: "https://www.davidvanille.com/5181-large_default/fleurs-de-cbd-gelato.jpg",
+                    description: ""
                   }));
                   onOpen();
                 }} className="font-bold text-sm  bg-black text-white" color="primary" radius="full" size="sm">
