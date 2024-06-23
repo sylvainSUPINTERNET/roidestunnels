@@ -74,26 +74,17 @@ export default function Home() {
                         ))}
                       </Select>
                   </div>
-                  <div className="flex justify-center">
-                  <Input
-                      type="number"
-                      label="Price"
-                      placeholder="0.00"
-                      labelPlacement="outside"
-                      startContent={
-                        <div className="pointer-events-none flex items-center">
-                          <span className="text-default-400 text-small">$</span>
-                        </div>
-                      }
-                    />
-                  </div>
 
                 </ModalBody>
                 <ModalFooter>
                   {/* <Button color="danger" variant="light" onPress={onClose}>
                     Fermer
                   </Button> */}
-                  <Button color="primary" onPress={onClose}>
+                  <Button color="primary" onPress={ async () => {
+                    const resp = await fetch('/api/cart', {});
+                    const cart = await resp.json();
+                    onClose();
+                  }}>
                     Confirmer
                   </Button>
                 </ModalFooter>
