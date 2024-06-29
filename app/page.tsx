@@ -9,6 +9,7 @@ import {Image} from "@nextui-org/react";
 import { CiDollar } from "react-icons/ci";
 import { FaCannabis, FaCartPlus } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
+import Cookie from 'js-cookie';
 
 export interface Product {
     name: string;
@@ -33,9 +34,13 @@ export default function Home() {
     image: ""
   });
 
+  const [currentProductQuantity, setCurrentProductQuantity] = React.useState<string|null>(null);
+
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   useEffect(() => {
+    // const value = Cookie.get('key');
+    // console.log("COOKIE", value);
   }, []);
   
 
@@ -66,6 +71,9 @@ export default function Home() {
                         label="Poids"
                         placeholder="Choisissez votre poids"
                         className="max-w-xs"
+                        onChange={ ( e ) => {
+                          setCurrentProductQuantity(e.target.value);
+                        }}
                       >
                         {[{key:"5g",label: "5g"}].map((animal) => (
                           <SelectItem key={animal.key}>
@@ -81,8 +89,77 @@ export default function Home() {
                     Fermer
                   </Button> */}
                   <Button color="primary" onPress={ async () => {
-                    const resp = await fetch('/api/cart', {});
-                    const cart = await resp.json();
+                    
+
+                    if ( currentProduct && currentProductQuantity && currentProduct !== null && currentProductQuantity !== null ) {
+
+                      console.log("ADD TO CART", currentProduct, currentProductQuantity);
+
+                      if ( !Cookie.get("roidestunnels_cart") ) {
+                        
+
+                        Cookie.set("roidestunnels_cart", JSON.stringify({
+                          items: [
+                            {
+                              name: currentProduct.name,
+                              quantity: currentProductQuantity
+                            }
+                          ]
+                        }), { expires: parseInt(process.env.NEXT_PUBLIC_COOKIE_MAX_AGE as string)});
+  
+                      } else {
+                        
+                        // update cookie or restore if it's shit inside
+                        console.log("BS", Cookie.get("roidestunnels_cart"));
+                        try {
+
+                        } catch ( e ) {
+                          // Restore completly
+                        }
+
+                      }
+
+                    }
+
+
+
+                    // const cookieName:string = process.env.roidestunnels_cart as string;
+                    
+                    
+                    // if ( !Cookie.get(cookieName) ) {
+                      
+                    // } else {
+
+                    // }
+
+                    // try {
+                    //   const resp = await fetch(process.env.NEXT_PUBLIC_API_CART as string, {
+                    //     method: "POST",
+                    //     headers: {
+                    //       "Content-Type": "application/json"
+                    //     },
+                    //     body: JSON.stringify({
+                    //       "items":[
+                    //         {
+                    //           "product": currentProduct,
+                    //           "quantity": "5g"
+                    //         }
+                    //       ]
+                    //     })
+                    //   });
+                    // } catch ( e ) {
+
+                    // }
+
+                    // reset
+                    setCurrentProductQuantity(null);
+                    setCurrentProduct({
+                      name: "",
+                      description: "",
+                      price: 0,
+                      image: ""
+                    });
+
                     onClose();
                   }}>
                     Confirmer
