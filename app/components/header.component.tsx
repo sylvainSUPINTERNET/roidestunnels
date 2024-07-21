@@ -8,7 +8,7 @@ const Header = () => {
             <Navbar>
                 <NavbarBrand>
                     <AcmeLogo />
-                    <p className="font-bold text-inherit text-2xl">Gulma</p>
+                    <p className="font-bold text-inherit text-2xl">Nurish</p>
                 </NavbarBrand>
                 <NavbarContent className="hidden sm:flex gap-4" justify="center">
                     {/* <NavbarItem>
