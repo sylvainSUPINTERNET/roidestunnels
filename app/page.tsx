@@ -18,27 +18,76 @@ export default function Home() {
   return (
     <main className="container mx-auto">
 
+      <div className="relative">
+        <div className="absolute inset-0 bg-[url('/bbblurry.svg')] bg-no-repeat"></div>
+
+        <div className="relative bg-gradient-to-t from-zinc-50 via-slate-50 to-emerald-100 bg-opacity-70 w-full h-96 backdrop-blur-md backdrop-brightness-150">
+          <p>ok</p>
+        </div>
+      </div>
+
+
       <div className="mt-[3em] mb-[3em] text-center">
         <h1 className="text-4xl md:text-4xl font-extrabold leading-tight">
           Vos repas fraîchement cuisinés, livrés pour la semaine !
         </h1>
       </div>
 
-      <div className="flex">
-        <div>
-          <p>Sans aucun engagement</p>
-          <p>Première livraison offerte</p>
-          <p>Composer vos recette</p>
-          <p>Paiement possible par carte titres-restaurant</p>
-          <p>Livraison express 1h</p>
+      <div className="md:flex text-2xl md:justify-around">
+
+        <div className="flex flex-col items-center">
+
+          <div className="mt-2 mb-2">
+            <div className="text-4xl md:text-4xl leading-tight">Créez votre propre menu</div>
+            <div>
+              <img src="https://img.icons8.com/?size=100&id=104302&format=png&color=000000" className="mx-auto"></img>
+            </div>
+          </div>
+
+          <div className="mt-2 mb-2">
+            <div className="text-4xl md:text-4xl leading-tight">Recevez votre box</div>
+            <div>
+              <img src="https://img.icons8.com/?size=100&id=118939&format=png&color=000000" className="mx-auto"></img>
+            </div>
+          </div>
+
+          <div className="mt-2 mb-2"> 
+            <div className="text-4xl md:text-4xl leading-tight">Modifier ou arrêter</div>
+            <div>
+              <img src="https://img.icons8.com/?size=100&id=kZR35qNLwxfz&format=png&color=000000" className="mx-auto"></img>
+            </div>
+          </div>
+
         </div>
+
+
+        {/* <div>
+          <div className="flex items-center gap-2">
+            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
+            <p className="text-4xl md:text-4xl leading-tight">Sans aucun engagement</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
+            <p className="text-4xl md:text-4xl leading-tight">Première livraison offerte</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
+            <p className="text-4xl md:text-4xl leading-tight">Composer vos recette</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
+            <p className="text-4xl md:text-4xl leading-tight">Paiement possible par carte titres-restaurant</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
+            <p className="text-4xl md:text-4xl leading-tight">Livraison express 1h</p>
+          </div>
+        </div> */}
+
+
       </div>
 
-      <div className="flex flex-col items-center">
-        <div>créez votre menu</div>
-        <div>Recevez votre box</div>
-        <div>Modifier ou arrêter</div>
-      </div>
+
     </main>
   )
 
