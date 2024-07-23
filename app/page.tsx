@@ -10,30 +10,126 @@ import { CiDollar } from "react-icons/ci";
 import { FaCannabis, FaCartPlus } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import Cookie from 'js-cookie';
+import { motion } from 'framer-motion';
 
 
 
 export default function Home() {
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 }
+  };
+
 
   return (
     <main className="container mx-auto">
 
-      <div className="relative">
-        <div className="absolute inset-0 bg-[url('/bbblurry.svg')] bg-no-repeat"></div>
-
-        <div className="relative bg-gradient-to-t from-zinc-50 via-slate-50 to-emerald-100 bg-opacity-70 w-full h-96 backdrop-blur-md backdrop-brightness-150">
-          <p>ok</p>
-        </div>
-      </div>
-
-
       <div className="mt-[3em] mb-[3em] text-center">
-        <h1 className="text-4xl md:text-4xl font-extrabold leading-tight">
-          Vos repas fraîchement cuisinés, livrés pour la semaine !
-        </h1>
+
+        <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={variants}
+            transition={{ duration: 0.5, ease: "easeOut" }}>
+            <h1 className="mx-6 mt-12 w-[300px] bg-gradient-to-b from-white/80 to-white bg-clip-text pb-4  text-center text-5xl font-extrabold leading-tight text-transparent  md:!w-full lg:!mt-20 lg:text-6xl xl:leading-snug">
+              Bien Mangé ? Facile !
+            </h1>
+      
+            <p className="mx-6 text-center font-mono text-xl text-slate-300 md:text-xl">
+              Vos repas fraîchement cuisinés, livrés pour la semaine !
+            </p>
+        </motion.div>
+
+        <motion.div className="text-white">
+          <div className="align-items">
+            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000">
+            </img>
+            <p>
+              Cuisinés par des chef·fes
+            </p>
+          </div>
+        </motion.div>
+
+
+        <div className="mt-[5em] p-2">
+              <div className="flex flex-col sm:items-center md:flex-row md:space-x-2 md:justify-around">
+              <motion.div 
+                  initial="hidden"
+                  animate="visible"
+                  variants={variants}
+                  transition={{ duration: 0.7, ease: "easeOut", delay:0.2}} className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white">
+                    OK
+                </motion.div>
+                <motion.div 
+                  initial="hidden"
+                  animate="visible"
+                  variants={variants}
+                  transition={{ duration: 0.7, ease: "easeOut", delay:0.4}} className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white">
+                    OK
+                </motion.div>
+              </div>
+        </div>
+
+
+
+
+      {/* <div>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                style={{
+                    width: '200px',
+                    height: '200px',
+                    backgroundColor: 'blue',
+                    margin: '20px'
+                }}
+            >
+                Div 1
+            </motion.div>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                style={{
+                    width: '200px',
+                    height: '200px',
+                    backgroundColor: 'green',
+                    margin: '20px'
+                }}
+            >
+                Div 2
+            </motion.div>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+                style={{
+                    width: '200px',
+                    height: '200px',
+                    backgroundColor: 'red',
+                    margin: '20px'
+                }}
+            >
+                Div 3
+            </motion.div>
+        </div> */}
+
       </div>
 
-      <div className="md:flex text-2xl md:justify-around">
+
+      {/* <div className="
+          h-96     h-full        bg-[url('/bbblurry.svg')] bg-no-repeat bg-center
+
+         bg-white-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-20 border border-gray-100
+          ">
+            UNFOR
+      </div> */}
+
+      {/* <div className="md:flex text-2xl md:justify-around">
 
         <div className="flex flex-col items-center">
 
@@ -61,31 +157,7 @@ export default function Home() {
         </div>
 
 
-        {/* <div>
-          <div className="flex items-center gap-2">
-            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
-            <p className="text-4xl md:text-4xl leading-tight">Sans aucun engagement</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
-            <p className="text-4xl md:text-4xl leading-tight">Première livraison offerte</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
-            <p className="text-4xl md:text-4xl leading-tight">Composer vos recette</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
-            <p className="text-4xl md:text-4xl leading-tight">Paiement possible par carte titres-restaurant</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000" className="w-12"></img>
-            <p className="text-4xl md:text-4xl leading-tight">Livraison express 1h</p>
-          </div>
-        </div> */}
-
-
-      </div>
+      </div> */}
 
 
     </main>

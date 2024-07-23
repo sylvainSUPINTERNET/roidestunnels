@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="dotted-background">
+      <body className={inter.className} style={{zIndex: 3, position:"relative"}}>
         <NextUi>
           <CounterStoreProvider>
             <Header></Header>
