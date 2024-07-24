@@ -40,7 +40,7 @@ export default function Home() {
             </p>
         </motion.div>
 
-        <motion.div className="text-white">
+        {/* <motion.div className="text-white">
           <div className="align-items">
             <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000">
             </img>
@@ -48,7 +48,7 @@ export default function Home() {
               Cuisinés par des chef·fes
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
 
 
         <div className="mt-[5em] p-2">
@@ -57,15 +57,22 @@ export default function Home() {
                   initial="hidden"
                   animate="visible"
                   variants={variants}
-                  transition={{ duration: 0.7, ease: "easeOut", delay:0.2}} className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white">
+                  transition={{ duration: 0.7, ease: "easeOut", delay:0.2}} 
+                  className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white">
                     OK
                 </motion.div>
+                
                 <motion.div 
                   initial="hidden"
                   animate="visible"
                   variants={variants}
-                  transition={{ duration: 0.7, ease: "easeOut", delay:0.4}} className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white">
-                    OK
+                  transition={{ duration: 0.7, ease: "easeOut", delay:0.4}} 
+                  // style={{
+                  //   "background": "radial-gradient(circle,  rgba(255, 255, 255, 2) 10%,  rgba(1, 0, 0, 0) 41%)"
+                  // }}
+                  className="mb-3  p-2 w-full text-white flex flex-col justify-center">
+                    <img src="./box.png" width={"320"} className="shadow shadow-lg"></img>
+                    <div>PPP</div>
                 </motion.div>
               </div>
         </div>
