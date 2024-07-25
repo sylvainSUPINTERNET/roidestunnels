@@ -51,15 +51,20 @@ export default function Home() {
         </motion.div> */}
 
 
+      { /* className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white"> */}
+
         <div className="mt-[5em] p-2">
               <div className="flex flex-col sm:items-center md:flex-row md:space-x-2 md:justify-around">
-              <motion.div 
-                  initial="hidden"
-                  animate="visible"
-                  variants={variants}
-                  transition={{ duration: 0.7, ease: "easeOut", delay:0.2}} 
-                  className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white">
-                    OK
+                <motion.div 
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                    transition={{ duration: 0.7, ease: "easeOut", delay:0.2}}
+                    className="w-full flex">
+                      <div className="grid grid-cols-2">
+                        <div className="bg-red-200">01</div>
+                        <div>09</div>
+                      </div>
                 </motion.div>
                 
                 <motion.div 
@@ -70,8 +75,8 @@ export default function Home() {
                   // style={{
                   //   "background": "radial-gradient(circle,  rgba(255, 255, 255, 2) 10%,  rgba(1, 0, 0, 0) 41%)"
                   // }}
-                  className="mb-3  p-2 w-full text-white flex flex-col justify-center">
-                    <img src="./box.png" width={"320"} className="shadow shadow-lg"></img>
+                  className="w-full text-white flex flex-col justify-center">
+                    <img src="./box.png"  className="shadow shadow-lg w-full"></img>
                     <div>PPP</div>
                 </motion.div>
               </div>
