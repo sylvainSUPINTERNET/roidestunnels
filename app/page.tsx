@@ -31,7 +31,7 @@ export default function Home() {
             animate="visible"
             variants={variants}
             transition={{ duration: 0.5, ease: "easeOut" }}>
-            <h1 className="mx-6 mt-12 w-[300px] bg-gradient-to-b from-white/80 to-white bg-clip-text pb-4  text-center text-5xl font-extrabold leading-tight text-transparent  md:!w-full lg:!mt-20 lg:text-6xl xl:leading-snug">
+            <h1 className="mx-6 mt-12 bg-gradient-to-b from-white/80 to-white bg-clip-text pb-4  text-center text-5xl font-extrabold leading-tight text-transparent  md:!w-full lg:!mt-20 lg:text-6xl xl:leading-snug">
               Bien Mangé ? Facile !
             </h1>
       
@@ -53,19 +53,32 @@ export default function Home() {
 
       { /* className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white"> */}
 
-        <div className="mt-[5em] p-2">
+        <div className="mt-[5em] md:mt-[0em] p-2">
               <div className="flex flex-col sm:items-center md:flex-row md:space-x-2 md:justify-around">
+                
                 <motion.div 
                     initial="hidden"
                     animate="visible"
                     variants={variants}
                     transition={{ duration: 0.7, ease: "easeOut", delay:0.2}}
                     className="w-full flex">
-                      <div className="grid grid-cols-2">
-                        <div className="bg-red-200">01</div>
-                        <div>09</div>
+                      <div className="grid grid-cols-1 w-full place-items-center border border-zinc-700 rounded bg-zinc-900 text-white font-extrabold leading-tight p-4" >
+                        <h1 className="text-6xl">Title</h1>
+                          <div className="text-4xl p-2">
+                            OK
+                          </div>
                       </div>
                 </motion.div>
+
+                
+                {/* <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={variants}
+                  className="flex"
+                  transition={{ duration: 0.7, ease: "easeOut", delay:0.4}}>
+                  <Button>XD</Button>
+                </motion.div> */}
                 
                 <motion.div 
                   initial="hidden"
@@ -77,7 +90,6 @@ export default function Home() {
                   // }}
                   className="w-full text-white flex flex-col justify-center">
                     <img src="./box.png"  className="shadow shadow-lg w-full"></img>
-                    <div>PPP</div>
                 </motion.div>
               </div>
         </div>
