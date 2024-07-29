@@ -22,6 +22,10 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.card {
+  background-image:  'linear-gradient(to bottom, white, white 95%, pink-100 95%)'
+}
+
 /*Don't forget to use poisition relatibe and index abot ::before */
 /* .dotted-background {
   position: relative;

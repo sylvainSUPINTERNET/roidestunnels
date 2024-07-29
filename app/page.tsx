@@ -42,23 +42,82 @@ export default function Home() {
          </motion.div>
       </div>
 
-      <div className="flex mt-3 md:mt-5 md:mb-1">
-        <div className="w-full bg-zinc-900 shadow-lg md:rounded-l-lg min-h-60 text-white p-3 text-md md:text-2xl">
-          Nurish propose des repas sains et équilibrés, préparés par des chefs cuisiniers, et livrés directement chez vous.
-          Livraison express en région parisienne
-        </div>
-        <div className="hidden md:block w-2/4">
-          <img src="kek.gif" className="rounded rounded-r-lg shadow shadow-lg"></img>
-        </div>
-      </div>
+
+
+      <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+                transition={{ duration: 0.5, ease: "easeOut" }} className="flex mt-3 md:mt-5 md:mb-1">
+
+
+                <div className="flex flex-col w-full md:flex-row mt-3 md:mt-5 md:mb-1">
+
+                  <div className="w-full md:rounded-l-lg p-2 md:p-6 text-md md:text-2xl grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="text-zinc-800 bg-gradient-to-b from-white via-yellow-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      Livraison 1h Région Parisienne
+                    </div>
+                    <div className="text-zinc-800 bg-gradient-to-b from-white via-pink-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      Plat sur Mesure
+                    </div>
+                    <div className="text-zinc-800bg-gradient-to-b from-white via-red-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      Plat à la Carte
+                    </div>
+                    <div className="text-zinc-800 bg-gradient-to-b from-white via-green-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      Carte Ticket Restaurent
+                    </div>
+                  </div>
+                  <div className="hidden md:block w-full md:w-2/4">
+                    <img src="kek.gif" className="rounded rounded-r-lg shadow-lg w-full h-full object-cover" alt="image"></img>
+                  </div>
+                </div>
+
+                  
+                {/* <div className="flex flex-col w-full md:flex-row mt-3 md:mt-5 md:mb-1">
+                  <div className="w-full md:rounded-l-lg p-2 md:p-6 text-md md:text-2xl grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-1 rounded-lg">
+                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
+                        <p className="ml-2 font-bold text-white ">Livraison express 1h - Paris</p>
+                      </div>
+                    </div>
+                    <div className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 p-1 rounded-lg">
+                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
+                        <p className="ml-2 font-bold text-white">Plat sur mesure</p>
+                      </div>
+                    </div>
+                    <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-1 rounded-lg">
+                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
+                        <p className="ml-2 font-bold text-white">Plat à la carte</p>
+                      </div>
+                    </div>
+                    <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-1 rounded-lg">
+                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
+                        <p className="ml-2 font-bold text-white">Carte ticket restaurant</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="hidden md:block w-full md:w-2/4">
+                    <img src="kek.gif" className="rounded rounded-r-lg shadow-lg w-full h-full object-cover" alt="image"></img>
+                  </div>
+                </div> */}
+
+      </motion.div >
+
 
 
       <div className="mt-[0em] md:mt-[0em] p-2">
 
-
-          <h2 className="mt-3 mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-4xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-5xl xl:leading-snug">
+      <motion.div 
+                  initial="hidden"
+                  animate="visible"
+                  variants={variants}
+                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+              >
+                          <h2 className="mt-3 mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-4xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-5xl xl:leading-snug">
                 Nos Offres
           </h2>
+      </motion.div>
+
       
 
               <div className="flex flex-col sm:items-center md:flex-row md:space-x-2 md:justify-around">
