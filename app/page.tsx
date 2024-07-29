@@ -24,36 +24,140 @@ export default function Home() {
   return (
     <main className="container mx-auto">
 
-      <div className="mt-[3em] mb-[3em] text-center">
-
+      <div className="flex justify-center mt-10">
         <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-            transition={{ duration: 0.5, ease: "easeOut" }}>
-            <h1 className="mx-6 mt-12 bg-gradient-to-b from-white/80 to-white bg-clip-text pb-4  text-center text-5xl font-extrabold leading-tight text-transparent  md:!w-full lg:!mt-20 lg:text-6xl xl:leading-snug">
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="glass">
+                
+            <h1 className="mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-5xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-6xl xl:leading-snug">
               Bien Mangé ? Facile !
             </h1>
       
-            <p className="mx-6 text-center font-mono text-xl text-slate-300 md:text-xl">
+            <p className="mx-6 text-center font-mono text-xl text-slate-500 md:text-2xl">
+              Vos repas fraîchement cuisinés pour la semaine
+            </p>
+         </motion.div>
+      </div>
+
+      <div className="flex mt-3 md:mt-5 md:mb-1">
+        <div className="w-full bg-zinc-900 shadow-lg md:rounded-l-lg min-h-60 text-white p-3 text-md md:text-2xl">
+          Nurish propose des repas sains et équilibrés, préparés par des chefs cuisiniers, et livrés directement chez vous.
+          Livraison express en région parisienne
+        </div>
+        <div className="hidden md:block w-2/4">
+          <img src="kek.gif" className="rounded rounded-r-lg shadow shadow-lg"></img>
+        </div>
+      </div>
+
+
+      <div className="mt-[0em] md:mt-[0em] p-2">
+
+
+          <h2 className="mt-3 mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-4xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-5xl xl:leading-snug">
+                Nos Offres
+          </h2>
+      
+
+              <div className="flex flex-col sm:items-center md:flex-row md:space-x-2 md:justify-around">
+
+              <motion.div 
+                  initial="hidden"
+                  animate="visible"
+                  variants={variants}
+                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+                  className="w-full flex justify-center"
+              >
+
+                  <div className="grid gril-cols-1 md:grid-cols-4 gap-4 w-full p-4">
+
+                    {
+                      [1,2,3,4].map( (i, idx) => {
+                        return (
+                          <div className="p-4 rounded bg-white border-2 border-purple-800/60 shadow-2xl shadow-purple-800/10 mb-5" key={idx}>
+                          <div className="w-full justify-around">
+                              <h3 className=" text-xl md:text-2xl font-extrabold leading-tight text-center">
+                                Pack Essentiel
+                              </h3>
+                          </div>
+                          <div>
+                              <p className="font-light text-gray-900 sm:text-lg dark:text-gray-400 text-center">
+                                  4 repas par semaine
+                              </p>
+                          </div>
+                          <div className="mt-5 mb-5 font-mono font-extrabold leading-tight text-4xl text-center text-blue-500">
+                            43.90€
+                          </div>
+                          <div className="flex p-1">
+                            <div className="mr-2">
+                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
+                                </path>
+                              </svg>
+                            </div>
+                            <div className="">
+                              Repas customisable
+                            </div>
+                          </div>
+
+                          <div className="flex p-1">
+                            <div className="mr-2">
+                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
+                                </path>
+                              </svg>
+                            </div>
+                            <div className="">
+                              Repas à la carte
+                            </div>
+                          </div>
+
+                          <div className="mt-5 mb-2 flex justify-center">
+                          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                              JE M'ABONNE
+                            </span>
+                          </button>
+                          </div>
+                      </div>
+                        )
+                      })
+                    }
+
+                  </div>
+              </motion.div>
+              </div>
+        </div>
+{/* 
+        <div className="h-screen w-full bg-white" style={{
+        backgroundImage: `radial-gradient(#e5e7eb 1px, transparent 1px), radial-gradient(ellipse at center, #fff 60%, transparent 100%)`,
+        backgroundSize: '16px 16px, cover'}}>
+
+          <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+                transition={{ duration: 0.5, ease: "easeOut" }}>
+            <h1 className="mx-6 mt-12 bg-gradient-to-b from-black/80 to-black bg-clip-text pb-4  text-center text-5xl font-extrabold leading-tight text-transparent  md:!w-full lg:!mt-20 lg:text-6xl xl:leading-snug">
+              Bien Mangé ? Facile !
+            </h1>
+      
+            <p className="mx-6 text-center font-mono text-xl text-slate-600 md:text-xl">
               Vos repas fraîchement cuisinés, livrés pour la semaine !
             </p>
-        </motion.div>
+          </motion.div>
 
-        {/* <motion.div className="text-white">
-          <div className="align-items">
-            <img src="https://img.icons8.com/?size=100&id=63262&format=png&color=000000">
-            </img>
-            <p>
-              Cuisinés par des chef·fes
-            </p>
+          <div className="mt-[5em] flex">
+            <div>XD</div>
           </div>
-        </motion.div> */}
+
+        </div> */}
 
 
-      { /* className="bg-white mb-3 rounded-lg border border-zinc-700 bg-zinc-900 p-2 w-full shadow-lg shadow-zinc-700/30 text-white"> */}
-
-        <div className="mt-[5em] md:mt-[0em] p-2">
+      
+        {/* <div className="mt-[5em] md:mt-[0em] p-2">
               <div className="flex flex-col sm:items-center md:flex-row md:space-x-2 md:justify-around">
                 
               <motion.div 
@@ -112,166 +216,11 @@ export default function Home() {
                           </div>
 
                       </div>
-
-                      <div className="p-4 rounded bg-zinc-900 border-2 border-blue-800/60 shadow-2xl shadow-blue-800/10 mb-5">
-                          <div className="w-full justify-around">
-                              <h3 className="text-white text-xl md:text-2xl font-extrabold leading-tight">
-                                Pack Essentiel
-                              </h3>
-                          </div>
-                          <div>
-                              <p className="font-light text-gray-200 sm:text-lg dark:text-gray-400">
-                                  6 repas par semaine
-                              </p>
-                          </div>
-                          <div className="mt-5 mb-5 text-white font-mono font-extrabold leading-tight text-4xl">
-                            69.90€
-                          </div>
-                          <div className="flex p-1">
-                            <div className="mr-2">
-                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
-                                </path>
-                              </svg>
-                            </div>
-                            <div className="text-white">
-                              Repas customisable
-                            </div>
-                          </div>
-
-                          <div className="flex p-1">
-                            <div className="mr-2">
-                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
-                                </path>
-                              </svg>
-                            </div>
-                            <div className="text-white">
-                              Repas à la carte
-                            </div>
-                          </div>
-
-                          <div className="mt-5 mb-2">
-                          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2  text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            JE M'ABONNE
-                            </span>
-                          </button>
-                          </div>
-                      </div>
-
-                      <div className="p-4 rounded bg-zinc-900 border-2 border-blue-800/60 shadow-2xl shadow-blue-800/10 mb-5">
-                          <div className="w-full justify-around">
-                              <h3 className="text-white text-xl md:text-2xl font-extrabold leading-tight">
-                                Pack Essentiel
-                              </h3>
-                          </div>
-                          <div>
-                              <p className="font-light text-gray-200 sm:text-lg dark:text-gray-400">
-                                  6 repas par semaine
-                              </p>
-                          </div>
-                          <div className="mt-5 mb-5 text-white font-mono font-extrabold leading-tight text-4xl">
-                            69.90€
-                          </div>
-                          <div className="flex p-1">
-                            <div className="mr-2">
-                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
-                                </path>
-                              </svg>
-                            </div>
-                            <div className="text-white">
-                              Repas customisable
-                            </div>
-                          </div>
-
-                          <div className="flex p-1">
-                            <div className="mr-2">
-                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
-                                </path>
-                              </svg>
-                            </div>
-                            <div className="text-white">
-                              Repas à la carte
-                            </div>
-                          </div>
-
-                          <div className="mt-5 mb-2">
-                          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2  text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            JE M'ABONNE
-                            </span>
-                          </button>
-                          </div>
-                      </div>
-
-                      <div className="p-4 rounded bg-zinc-900 border-2 border-blue-800/60 shadow-2xl shadow-blue-800/10 mb-5">
-                          <div className="w-full justify-around">
-                              <h3 className="text-white text-xl md:text-2xl font-extrabold leading-tight">
-                                Pack Essentiel
-                              </h3>
-                          </div>
-                          <div>
-                              <p className="font-light text-gray-200 sm:text-lg dark:text-gray-400">
-                                  6 repas par semaine
-                              </p>
-                          </div>
-                          <div className="mt-5 mb-5 text-white font-mono font-extrabold leading-tight text-4xl">
-                            69.90€
-                          </div>
-                          <div className="flex p-1">
-                            <div className="mr-2">
-                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
-                                </path>
-                              </svg>
-                            </div>
-                            <div className="text-white">
-                              Repas customisable
-                            </div>
-                          </div>
-
-                          <div className="flex p-1">
-                            <div className="mr-2">
-                              <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd">
-                                </path>
-                              </svg>
-                            </div>
-                            <div className="text-white">
-                              Repas à la carte
-                            </div>
-                          </div>
-
-                          <div className="mt-5 mb-2">
-                          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2  text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            JE M'ABONNE
-                            </span>
-                          </button>
-                          </div>
-                      </div>
                   </div>
               </motion.div>
-
-            
-              {/* <motion.div 
-                initial="hidden"
-                animate="visible"
-                variants={variants}
-                transition={{ duration: 0.7, ease: "easeOut", delay:0.4}} 
-                // style={{
-                //   "background": "radial-gradient(circle,  rgba(255, 255, 255, 2) 10%,  rgba(1, 0, 0, 0) 41%)"
-                // }}
-                className="w-full text-white flex flex-col justify-center">
-                  <img src="./box.png"  className="w-full"></img>
-              </motion.div> */}
-
               </div>
         </div>
-
+ */}
 
 
 
@@ -320,7 +269,6 @@ export default function Home() {
             </motion.div>
         </div> */}
 
-      </div>
 
 
       {/* <div className="

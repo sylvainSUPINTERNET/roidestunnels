@@ -18,7 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dotted-background">
+    <html lang="en"
+    
+    style={{
+      background: "white",
+      backgroundImage: `radial-gradient(#e5e7eb 1px, transparent 1px), radial-gradient(ellipse at center, #fff 60%, transparent 100%)`,
+      backgroundSize: '16px 16px, cover'}}
+    >
       <body className={inter.className} style={{zIndex: 3, position:"relative"}}>
         <NextUi>
           <CounterStoreProvider>

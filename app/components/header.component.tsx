@@ -4,7 +4,9 @@ import { IoMdCart } from "react-icons/io";
 
 const Header = () => {
     return (
-        <div className="mt-5">
+        <div
+            className="glass"
+        >
             <Navbar>
                 <NavbarBrand>
                     <AcmeLogo />
