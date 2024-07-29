@@ -60,7 +60,7 @@ export default function Home() {
                     <div className="text-zinc-800 bg-gradient-to-b from-white via-pink-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
                       Plat sur Mesure
                     </div>
-                    <div className="text-zinc-800bg-gradient-to-b from-white via-red-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                    <div className="text-zinc-800 bg-gradient-to-b from-white via-red-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
                       Plat à la Carte
                     </div>
                     <div className="text-zinc-800 bg-gradient-to-b from-white via-green-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
