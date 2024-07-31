@@ -54,22 +54,22 @@ export default function Home() {
                 <div className="flex flex-col w-full md:flex-row mt-3 md:mt-5 md:mb-1">
 
                   <div className="w-full md:rounded-l-lg p-2 md:p-6 text-md md:text-2xl grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="text-zinc-800 bg-gradient-to-b from-white via-yellow-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
-                      Livraison 1h Région Parisienne
+                    <div className="text-zinc-600 bg-gradient-to-b from-white via-yellow-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      <img src="https://img.icons8.com/?size=100&id=11849&format=png&color=000000" width={30} className="mr-2"></img>Livraison 1h Région Parisienne
                     </div>
-                    <div className="text-zinc-800 bg-gradient-to-b from-white via-pink-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
-                      Plat sur Mesure
+                    <div className="text-zinc-600 bg-gradient-to-b from-white via-pink-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      <img src="https://img.icons8.com/?size=100&id=11849&format=png&color=000000" width={30} className="mr-2"></img>Plat sur Mesure
                     </div>
-                    <div className="text-zinc-800 bg-gradient-to-b from-white via-red-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
-                      Plat à la Carte
+                    <div className="text-zinc-600 bg-gradient-to-b from-white via-red-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      <img src="https://img.icons8.com/?size=100&id=11849&format=png&color=000000" width={30} className="mr-2"></img>Plat à la Carte
                     </div>
-                    <div className="text-zinc-800 bg-gradient-to-b from-white via-green-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
-                      Carte Ticket Restaurent
+                    <div className="text-zinc-600 bg-gradient-to-b from-white via-green-50 to-white-50 p-6 rounded-xl font-mono justify-center flex items-center font-extrabold leading-tight ">
+                      <img src="https://img.icons8.com/?size=100&id=11849&format=png&color=000000" width={30} className="mr-2"></img>Carte Ticket Restaurent
                     </div>
                   </div>
-                  <div className="hidden md:block w-full md:w-2/4">
+                  {/* <div className="hidden md:block w-full md:w-2/4">
                     <img src="kek.gif" className="rounded rounded-r-lg shadow-lg w-full h-full object-cover" alt="image"></img>
-                  </div>
+                  </div> */}
                 </div>
 
                   
