@@ -112,9 +112,54 @@ export default function Home() {
                     variants={variants}
                     transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
                 >
-                            <h2 className="mt-3 mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-4xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-5xl xl:leading-snug">
-                  Comment ça marche ?
-            </h2>
+                            {/* <h2 className="mt-3 mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-4xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-5xl xl:leading-snug">
+                                  Comment ça marche ?
+                            </h2> */}
+
+
+
+                <div className="blurred-bg  p-4">
+
+                <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                  {
+                    [1,2,3,4].map( (i, idx) => {
+                      return (
+                        <div className="isolate aspect-video w-full rounded-xl bg-zinc-400/10 shadow-lg ring-1 ring-black/5 mb-5" key={idx}>
+                        <div className="p-2">
+                          <p>Lets go</p>
+                        </div>
+                      </div>
+                      );
+                    })
+                  }
+                
+                </div>
+
+                  {/* <div className="mt-[5em] font-mono font-bold text-xl p-2 md:space-x-3 justify-center flex flex-col md:flex-row">
+
+                    <div className="isolate aspect-video w-full rounded-xl bg-zinc-400/10 shadow-lg ring-1 ring-black/5 mb-5">
+                      <div className="p-2">
+                        <p>Lets go</p>
+                      </div>
+                    </div>
+
+                    <div className="isolate aspect-video w-full rounded-xl bg-zinc-400/10 shadow-lg ring-1 ring-black/5 mb-5">
+                      <div className="p-2">
+                        <p>Lets go</p>
+                      </div>
+                    </div>
+
+                    <div className="isolate aspect-video w-full rounded-xl bg-zinc-400/10 shadow-lg ring-1 ring-black/5 mb-5">
+                      <div className="p-2">
+                        <p>Lets go</p>
+                      </div>
+                    </div>
+
+                  </div> */}
+
+
+                </div>
+
         </motion.div>
       </div>
 
