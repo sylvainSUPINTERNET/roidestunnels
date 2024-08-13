@@ -47,7 +47,10 @@ export default function Home() {
 
         <div className="bg-white">
         <div className="flex justify-end mt-3 px-3 py-[-3] md:py-6 container">
-          <div className="bg-zinc-500 rounded-full p-1 shadow-xl hover:scale-110 transition-transform duration-300">
+          <div className="bg-zinc-500 rounded-full p-1 shadow-xl hover:scale-110 transition-transform duration-300"
+            onClick={ el => {
+              setShowMenuMeals(false);
+            }}>
             <svg 
             className="cursor-pointer text-white"
             xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -107,7 +110,7 @@ export default function Home() {
                   <div className="w-full text-center font-extrabold leading-tigh">Allergène {idx}</div>
                   <div className="w-full p-1 ">
                     <img 
-                        className="w-28 rounded shadow-lg" 
+                        className="w-28 rounded-full bg-red-200 shadow-lg" 
                         src="https://www.lesfoodies.com/_recipeimage/209186/cuisses-poulet-marinees-et-roties-2x-1124.jpeg">
                     </img>
                   </div>
