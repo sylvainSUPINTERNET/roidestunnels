@@ -17,7 +17,9 @@ import { motion } from 'framer-motion';
 export default function Home() {
 
 
-  let [showMenuMeals, setShowMenuMeals] = React.useState("hidden");
+  let [showMenuMeals, setShowMenuMeals] = React.useState(false);
+
+  let [activeButtonMeals, setActiveButtonMeals] = React.useState(0);
 
 
   const variants = {
@@ -31,38 +33,52 @@ export default function Home() {
 
 
     <button onClick={ e => {
-      setShowMenuMeals(showMenuMeals === "hidden" ? "block" : "hidden");
+        setShowMenuMeals(!showMenuMeals)
     }}>
         CXLICK 
     </button>
 
-      
+    
 
-    <motion.div
-      initial={{ y: "100%", opacity: 0 }} // Start off-screen and invisible
-      animate={{ y: 0, opacity: 1 }} // Slide in and become visible
-      exit={{ y: "100%", opacity: 0 }} // Optionally, slide out and become invisible
-      transition={{ type: "spring", stiffness: 100, damping: 20 }} // Adjust spring effect
-      className={`${showMenuMeals} fixed bottom-0 z-50 w-full -translate-x-1/2 bg-white border-t border-gray-200 left-1/2 dark:bg-gray-700 dark:border-gray-600`}
-    >
-      <p>KEKXW </p>
-    </motion.div>
-
-{/*     
-    <div className={`${showMenuMeals} fixed bottom-0 z-50 w-full -translate-x-1/2 bg-white border-t border-gray-200 left-1/2 dark:bg-gray-700 dark:border-gray-600`}>
+    <div  className={`fixed bottom-0 z-50 w-full -translate-x-1/2 transform transition-all duration-500 ease-out ${
+          showMenuMeals ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        } bg-white border-t border-gray-200 left-1/2 dark:bg-gray-700 dark:border-gray-600`}
+      >
         <div className="w-full">
             <div className="grid max-w-xs grid-cols-3 gap-1 p-1 mx-auto my-2 bg-gray-100 rounded-lg dark:bg-gray-600" role="group">
-                <button type="button" className="px-5 py-1.5 text-xs font-medium text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 rounded-lg">
-                    New
+              <button
+                  type="button"
+                  onClick={(e) => setActiveButtonMeals(0)}
+                  className={`px-5 py-1.5 text-xs md:text-lg font-medium rounded-lg transition-colors duration-300 
+                    ${activeButtonMeals === 0 
+                      ? "text-white bg-gray-900 dark:bg-gray-300 dark:text-gray-900" 
+                      : "text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"}`}
+                >
+                  Protéine
                 </button>
-                <button type="button" className="px-5 py-1.5 text-xs font-medium text-white bg-gray-900 dark:bg-gray-300 dark:text-gray-900 rounded-lg">
-                    Popular
-                </button>
-                <button type="button" className="px-5 py-1.5 text-xs font-medium text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 rounded-lg">
-                    Following
-                </button>
+                <button
+                    type="button"
+                    onClick={(e) => setActiveButtonMeals(1)}
+                    className={`px-5 py-1.5 text-xs md:text-lg font-medium rounded-lg transition-colors duration-300 
+                      ${activeButtonMeals === 1
+                        ? "text-white bg-gray-900 dark:bg-gray-300 dark:text-gray-900" 
+                        : "text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"}`}
+                  >
+                    Légume
+                  </button>
+                  <button
+                      type="button"
+                      onClick={(e) => setActiveButtonMeals(2)}
+                      className={`px-5 py-1.5 text-xs md:text-lg font-medium rounded-lg transition-colors duration-300 
+                        ${activeButtonMeals === 2 
+                          ? "text-white bg-gray-900 dark:bg-gray-300 dark:text-gray-900" 
+                          : "text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"}`}
+                    >
+                      Sauce
+                  </button>
             </div>
         </div>
+
         <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
             <button data-tooltip-target="tooltip-home" type="button" className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                 <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -86,7 +102,7 @@ export default function Home() {
             </div>
             <button data-tooltip-target="tooltip-post" type="button" className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                 <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/>
                 </svg>
                 <span className="sr-only">New post</span>
             </button>
@@ -96,7 +112,7 @@ export default function Home() {
             </div>
             <button data-tooltip-target="tooltip-search" type="button" className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                 <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
                 <span className="sr-only">Search</span>
             </button>
@@ -106,7 +122,7 @@ export default function Home() {
             </div>
             <button data-tooltip-target="tooltip-settings" type="button" className="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                 <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"/>
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"/>
                 </svg>
                 <span className="sr-only">Settings</span>
             </button>
@@ -116,7 +132,7 @@ export default function Home() {
             </div>
         </div>
     </div>
- */}
+
 
 
       <div className="flex justify-center mt-10">
