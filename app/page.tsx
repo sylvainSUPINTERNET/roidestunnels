@@ -44,8 +44,26 @@ export default function Home() {
           showMenuMeals ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         } bg-white border-t border-gray-200 left-1/2 dark:bg-gray-700 dark:border-gray-600`}
       >
+
+        <div className="bg-white">
+        <div className="flex justify-end mt-3 px-3 py-[-3] md:py-6 container">
+          <div className="bg-zinc-500 rounded-full p-1 shadow-xl hover:scale-110 transition-transform duration-300">
+            <svg 
+            className="cursor-pointer text-white"
+            xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+
+        </div>
+        <div className="text-center md:mt-[0.5em] font-extrabold leading-tigh text-2xl 
+        p-2
+        ">Composer votre repas 1</div>
+        </div>
+
         <div className="w-full">
-            <div className="grid max-w-xs grid-cols-3 gap-1 p-1 mx-auto my-2 bg-gray-100 rounded-lg dark:bg-gray-600" role="group">
+            <div className="grid max-w-lg grid-cols-3 gap-1 p-1 mx-auto my-2 bg-gray-100 rounded-lg dark:bg-gray-600" role="group">
               <button
                   type="button"
                   onClick={(e) => setActiveButtonMeals(0)}
@@ -70,11 +88,11 @@ export default function Home() {
                       type="button"
                       onClick={(e) => setActiveButtonMeals(2)}
                       className={`px-5 py-1.5 md:text-lg font-medium rounded-lg transition-colors duration-300 
-                        ${activeButtonMeals === 2 
+                        ${activeButtonMeals === 3
                           ? "text-white bg-gray-900 dark:bg-gray-300 dark:text-gray-900" 
                           : "text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"}`}
                     >
-                      Sauce
+                      Condiment
                   </button>
             </div>
         </div>
@@ -85,9 +103,8 @@ export default function Home() {
               return (
                 <div key={idx} className="p-6 flex justify-center md:flex-col">
                   <div className="w-full text-center font-extrabold leading-tigh">Meal {idx}</div>
-                  <div className="w-full text-center font-extrabold leading-tigh">Meal {idx}</div>
-                  <div className="w-full text-center font-extrabold leading-tigh">Meal {idx}</div>
-                  <div className="w-full text-center font-extrabold leading-tigh">Meal {idx}</div>
+                  <div className="w-full text-center font-extrabold leading-tigh">Calories {idx}</div>
+                  <div className="w-full text-center font-extrabold leading-tigh">Allergène {idx}</div>
                   <div className="w-full p-1 ">
                     <img 
                         className="w-28 rounded shadow-lg" 
