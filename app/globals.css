@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow-x: hidden; /* for animation avoid horizontal scroll pop */
+}
 
 .glass {
   /* From https://css.glass */
