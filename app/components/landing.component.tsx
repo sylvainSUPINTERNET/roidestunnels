@@ -188,7 +188,7 @@ export default function Landing({mealsData}: {mealsData:any}) {
 
 
 
-      <motion.div 
+      {/* <motion.div 
                 initial="hidden"
                 animate="visible"
                 variants={variants}
@@ -211,43 +211,8 @@ export default function Landing({mealsData}: {mealsData:any}) {
                       Carte Ticket Restaurent
                     </div>
                   </div>
-                  {/* <div className="hidden md:block w-full md:w-2/4">
-                    <img src="kek.gif" className="rounded rounded-r-lg shadow-lg w-full h-full object-cover" alt="image"></img>
-                  </div> */}
                 </div>
-
-
-
-                  
-                {/* <div className="flex flex-col w-full md:flex-row mt-3 md:mt-5 md:mb-1">
-                  <div className="w-full md:rounded-l-lg p-2 md:p-6 text-md md:text-2xl grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-1 rounded-lg">
-                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
-                        <p className="ml-2 font-bold text-white ">Livraison express 1h - Paris</p>
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 p-1 rounded-lg">
-                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
-                        <p className="ml-2 font-bold text-white">Plat sur mesure</p>
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-1 rounded-lg">
-                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
-                        <p className="ml-2 font-bold text-white">Plat à la carte</p>
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-1 rounded-lg">
-                      <div className="bg-zinc-900 p-4 rounded-lg flex items-center justify-center">
-                        <p className="ml-2 font-bold text-white">Carte ticket restaurant</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="hidden md:block w-full md:w-2/4">
-                    <img src="kek.gif" className="rounded rounded-r-lg shadow-lg w-full h-full object-cover" alt="image"></img>
-                  </div>
-                </div> */}
-
-      </motion.div >
+      </motion.div> */}
 
       <div className="mt-[2em] md:mt-[2em] p-2">
         <motion.div 
@@ -284,11 +249,12 @@ export default function Landing({mealsData}: {mealsData:any}) {
         </motion.div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         animate="visible"
         variants={variants}
         transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}>
+          
         <div className="bg-red-200 flex flex-col md:flex-row justify-center md:space-x-2">
             <div className="bg-slate-200">
               Meal 1
@@ -306,22 +272,22 @@ export default function Landing({mealsData}: {mealsData:any}) {
               + 2
             </div>
         </div>
-      </motion.div>
+      </motion.div> */}
 
 
 
       <div className="mt-[0em] md:mt-[0em] p-2">
 
-      <motion.div 
+      {/* <motion.div 
                   initial="hidden"
                   animate="visible"
                   variants={variants}
                   transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
               >
-                          <h2 className="mt-3 mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-4xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-5xl xl:leading-snug">
+          <h2 className="mt-3 mx-6 bg-gradient-to-b from-black/70 to-black bg-clip-text pb-4  text-center text-4xl font-extrabold leading-tight text-transparent  md:!w-full  lg:text-5xl xl:leading-snug">
                 Nos Offres
           </h2>
-      </motion.div>
+      </motion.div> */}
 
       
 
@@ -374,14 +340,14 @@ export default function Landing({mealsData}: {mealsData:any}) {
                               </svg>
                             </div>
                             <div className="">
-                              Repas à la carte
+                              Livraison express
                             </div>
                           </div>
 
                           <div className="mt-5 mb-2 flex justify-center">
                           <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                              JE M'ABONNE
+                              COMPOSER
                             </span>
                           </button>
                           </div>
