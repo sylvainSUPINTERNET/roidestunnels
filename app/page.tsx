@@ -36,7 +36,7 @@ export default async function Home() {
       {
         "_id":"4",
         "name":"Poulet Marinée Origan",
-        "kcal": 489,
+        "kcal": 230,
         "allergens": ["gluten", "lactose"],
         "imgUrl": "https://previews.123rf.com/images/monphoto/monphoto0908/monphoto090800004/5312243-escalope-grill%C3%A9e-r%C3%B4tis-de-viande-de-dinde-avec-des-l%C3%A9gumes.jpg"
       }
@@ -52,7 +52,7 @@ export default async function Home() {
       {
         "_id":"6",
         "name":"Penne Rigate",
-        "kcal": 489,
+        "kcal": 877,
         "allergens": ["gluten", "lactose"],
         "imgUrl": "https://previews.123rf.com/images/monphoto/monphoto0908/monphoto090800004/5312243-escalope-grill%C3%A9e-r%C3%B4tis-de-viande-de-dinde-avec-des-l%C3%A9gumes.jpg"
       },
@@ -75,7 +75,7 @@ export default async function Home() {
       {
         "_id":"10",
         "name":"Sauce Curry",
-        "kcal": 489,
+        "kcal": 100,
         "allergens": ["gluten", "lactose"],
         "imgUrl": "https://previews.123rf.com/images/monphoto/monphoto0908/monphoto090800004/5312243-escalope-grill%C3%A9e-r%C3%B4tis-de-viande-de-dinde-avec-des-l%C3%A9gumes.jpg"
       },

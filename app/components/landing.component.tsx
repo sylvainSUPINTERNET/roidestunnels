@@ -8,11 +8,12 @@ import { FiAlertOctagon } from "react-icons/fi";
 
 export default function Landing({mealsData}: {mealsData:any}) {
 
-
   let [showMenuMeals, setShowMenuMeals] = useState(false);
   let [activeButtonMeals, setActiveButtonMeals] = useState(0);
-  
 
+
+  useEffect( () => { }, [])
+  
 
   const variants = {
     hidden: { opacity: 0, y: 50 },
@@ -34,9 +35,7 @@ export default function Landing({mealsData}: {mealsData:any}) {
     <main className="container mx-auto">
 
 
-    <button onClick={ e => {
-        setShowMenuMeals(!showMenuMeals)
-    }}>
+    <button onClick={ e => { setShowMenuMeals(!showMenuMeals) }}>
         CXLICK 
     </button>
 
@@ -295,13 +294,13 @@ export default function Landing({mealsData}: {mealsData:any}) {
               Meal 1
             </div>
             <div className="bg-slate-200">
-            Meal 1
+              Meal 1
             </div>
             <div className="bg-slate-200">
-            Meal 1
+              Meal 1
             </div>
             <div className="bg-slate-200">
-            Meal 1
+              Meal 1
             </div>
             <div className="bg-slate-200">
               + 2
