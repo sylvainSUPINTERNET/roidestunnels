@@ -62,9 +62,8 @@ export default function Landing({mealsData}: {mealsData:any}) {
           </div>
 
         </div>
-          <div className="text-center md:mt-[0.5em] font-extrabold leading-tigh text-md md:text-2xl
-          md:p-2
-          ">Composer
+          <div className="text-center md:mt-[0.5em] font-extrabold leading-tigh text-md md:text-2xl md:p-2">
+            Composer
           </div>
           <div className="flex justify-center">
             Repas : 1 2 3 4 5 6 7 8 9 10
@@ -216,7 +215,9 @@ export default function Landing({mealsData}: {mealsData:any}) {
       </motion.div> */}
 
 
-        <PriceTable></PriceTable>
+        <div style={{"overflowX": "hidden"}}>
+          <PriceTable></PriceTable>
+        </div>
 
 {/* 
         <div className="h-screen w-full bg-white" style={{

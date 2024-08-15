@@ -4,12 +4,14 @@ import React from "react";
 import Landing from "./components/landing.component";
 
 
+
 export default async function Home() {
 
   const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1');
   let data = await resp.json();
 
-  // MOCK 
+
+ // MOCK 
   data  = {
     "protein": [
       {

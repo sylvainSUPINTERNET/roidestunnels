@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.6",
+    "@stripe/stripe-js": "^4.3.0",
     "cookies": "^0.9.1",
     "echarts": "^5.5.1",
     "framer-motion": "^11.3.12",
