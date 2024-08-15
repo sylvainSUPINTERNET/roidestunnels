@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import MealBuilder from "./mealbuilder.component";
 
 export default function PriceTable({productsData}:{productsData: any}) {
 
@@ -25,7 +26,9 @@ export default function PriceTable({productsData}:{productsData: any}) {
 
     const [currentPage, setCurrentPage] = useState('main');
 
-    const [offerTypeSelected, setOfferTypeSelected] = useState(null);
+    const [offerTypeSelected, setOfferTypeSelected] = useState("main");
+
+    const [selectedProduct, setSelectedProduct] = useState({});
 
     
     
@@ -90,8 +93,9 @@ export default function PriceTable({productsData}:{productsData: any}) {
                     transition={pageTransition}
                     className="page"
                 >
-                    <h1>Page Principale 2 : {offerTypeSelected}</h1>
-                    <button onClick={ e => {setCurrentPage("main")}}>Back main</button>
+                    {/* <h1>Page Principale 2 : {offerTypeSelected}</h1>
+                    <button onClick={ e => {setCurrentPage("main")}}>Back main</button> */}
+                    <MealBuilder offerTypeSelected={offerTypeSelected} setCurrentPage={setCurrentPage} pack={selectedProduct}/>
                 </motion.div>
             )}
             
@@ -158,6 +162,7 @@ export default function PriceTable({productsData}:{productsData: any}) {
                                     onClick={ e => {
                                         setCurrentPage("page2")
                                         setOfferTypeSelected(i.metadata.offerTypeMetadata)
+                                        setSelectedProduct(i)
                                     }}
                                     className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                                     <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
