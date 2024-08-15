@@ -11,6 +11,19 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                     }
                 </p>
             </div>
+
+                        
+            <div className="flex justify-around">
+                <div className="bg-red-500 w-full">
+                    <p>Box 1</p>
+                </div>
+                <div className="bg-green-200 w-full">
+                    <div>produit</div>
+                    <div>produit</div>
+                    <div>produit</div>
+                    <div>produit</div>
+                </div>
+            </div>
         </div>
     )
 }
