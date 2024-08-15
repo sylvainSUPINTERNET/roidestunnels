@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-export default function PriceTable() {
+export default function PriceTable({productsData}:{productsData: any}) {
 
     const variants = {
         hidden: { opacity: 0, y: 50 },
@@ -24,6 +24,8 @@ export default function PriceTable() {
 
 
     const [currentPage, setCurrentPage] = useState('main');
+
+    const [offerTypeSelected, setOfferTypeSelected] = useState(null);
 
     
     
@@ -63,7 +65,7 @@ export default function PriceTable() {
 
         <AnimatePresence mode="wait">
 
-            {currentPage === 'main' && (
+            {/* {currentPage === 'main' && (
                 <motion.div
                     key="main"
                     initial="initial"
@@ -76,7 +78,7 @@ export default function PriceTable() {
                     <h1>Page Principale</h1>
                     <button onClick={ e => setCurrentPage("page2") }>Confirmer (Créer un plat)</button>
                 </motion.div>
-            )}
+            )} */}
 
             { currentPage === 'page2' && (
                 <motion.div
@@ -88,7 +90,7 @@ export default function PriceTable() {
                     transition={pageTransition}
                     className="page"
                 >
-                    <h1>Page Principale 2</h1>
+                    <h1>Page Principale 2 : {offerTypeSelected}</h1>
                     <button onClick={ e => {setCurrentPage("main")}}>Back main</button>
                 </motion.div>
             )}
@@ -109,21 +111,23 @@ export default function PriceTable() {
                         <div className="grid gril-cols-1 md:grid-cols-4 gap-4 w-full p-4">
     
                         {
-                            [1,2,3,4].map( (i, idx) => {
+                            productsData.data.sort( (a:any, b:any) => {
+                                return a.default_price.unit_amount - b.default_price.unit_amount;
+                            }).map( (i:any, idx:number) => {
                             return (
                                 <div className="p-4 rounded bg-white border-2 border-purple-800/60 shadow-2xl shadow-purple-800/10 mb-5" key={idx}>
                                 <div className="w-full justify-around">
                                     <h3 className=" text-xl md:text-2xl font-extrabold leading-tight text-center">
-                                    Pack Essentiel
+                                     {i.name}
                                     </h3>
                                 </div>
                                 <div>
                                     <p className="font-light text-gray-900 sm:text-lg dark:text-gray-400 text-center">
-                                        4 repas par semaine
+                                        {i.description}
                                     </p>
                                 </div>
                                 <div className="mt-5 mb-5 font-mono font-extrabold leading-tight text-4xl text-center text-blue-500">
-                                43.90€
+                                    {(i.default_price.unit_amount / 100).toFixed(2)}€
                                 </div>
                                 <div className="flex p-1">
                                 <div className="mr-2">
@@ -150,10 +154,15 @@ export default function PriceTable() {
                                 </div>
     
                                 <div className="mt-5 mb-2 flex justify-center">
-                                <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                                <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                    COMPOSER
-                                </span>
+                                <button 
+                                    onClick={ e => {
+                                        setCurrentPage("page2")
+                                        setOfferTypeSelected(i.metadata.offerTypeMetadata)
+                                    }}
+                                    className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                                    <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                        COMPOSER
+                                    </span>
                                 </button>
                                 </div>
                             </div>

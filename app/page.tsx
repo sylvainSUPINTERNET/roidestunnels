@@ -11,7 +11,13 @@ export default async function Home() {
   let data = await resp.json();
 
 
- // MOCK 
+  const productApiResp = await fetch( (process.env.NEXT_PUBLIC_API_NURISH as string) + '/stripe/products', {
+    cache: 'no-cache'
+  });
+  let productData = await productApiResp.json();
+
+
+  // MOCK 
   data  = {
     "protein": [
       {
@@ -107,7 +113,7 @@ export default async function Home() {
  
 
   return ( 
-    <Landing mealsData={data}></Landing>
+    <Landing mealsData={data} productsData={productData}></Landing>
   );
 
 }

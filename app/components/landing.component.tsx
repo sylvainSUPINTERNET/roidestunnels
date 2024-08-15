@@ -5,9 +5,7 @@ import { motion } from 'framer-motion';
 import { FiAlertOctagon } from "react-icons/fi";
 import PriceTable from "./price-table.component";
 
-
-
-export default function Landing({mealsData}: {mealsData:any}) {
+export default function Landing({mealsData, productsData}: {mealsData:any, productsData: any}) {
 
   let [showMenuMeals, setShowMenuMeals] = useState(false);
   let [activeButtonMeals, setActiveButtonMeals] = useState(0);
@@ -215,8 +213,8 @@ export default function Landing({mealsData}: {mealsData:any}) {
       </motion.div> */}
 
 
-        <div style={{"overflowX": "hidden"}}>
-          <PriceTable></PriceTable>
+        <div style={{"overflow": "hidden"}}>
+          <PriceTable productsData={productsData}></PriceTable>
         </div>
 
 {/* 
