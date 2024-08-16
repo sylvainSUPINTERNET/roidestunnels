@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FaWeightScale } from "react-icons/fa6"
 import { FiAlertOctagon, FiArrowLeft } from "react-icons/fi"
 
@@ -11,6 +12,18 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
         console.log("FN " , e.target.parentElement);
     }
+
+
+    /**
+     * {
+     * "1": {
+     *     "protein": [] // list of _id
+     *    "vegetable": []
+     *   "condiment": []}
+     * 
+     */
+
+    let [mealsSelectionMap, setMealsSelectionMap] = useState<any>({})
 
 
     return ( 
