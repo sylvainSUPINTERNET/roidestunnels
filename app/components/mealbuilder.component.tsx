@@ -1,3 +1,4 @@
+import { FaWeightScale } from "react-icons/fa6"
 import { FiAlertOctagon, FiArrowLeft } from "react-icons/fi"
 
 export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : {offerTypeSelected: string, setCurrentPage: React.Dispatch<React.SetStateAction<string>>, pack:any}) {
@@ -152,23 +153,29 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
 
                                 <div className="">
+
                                     <div className="p-2 text-lg text-gray-800/80">
                                         <p>Protéine</p>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1">
+                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
 
                                         {
                                             [1,2,3,4].map( (item, index) => {
                                                 return ( 
                                                     <div className="flex flex-col">
-                                                    <p className="text-sm md:text-lg font-bold text-center mb-2">Poulet Curry Japonais</p>
+                                                    <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
                                                             <div>
-                                                                <div className="mb-3 font-medium">
-                                                                    100 Kcal
+                                                                <div className="mb-3 font-medium flex items-center gap-1">
+                                                                    <div className="text-md md:text-2xl font-bold font-mono">
+                                                                        100
+                                                                    </div>
+                                                                    <div>
+                                                                        <img src={"calories.png"} width={36}></img>
+                                                                    </div>
                                                                 </div>
-                                                                <div className="mb-3 font-medium">
+                                                                <div className="mb-3 font-medium font-mono">
                                                                     150g
                                                                 </div>
                                                                 <div>
@@ -203,8 +210,128 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         }
         
                                         </div>
-
                                     </div>
+
+
+                                    
+                                    <div className="p-2 text-lg text-gray-800/80">
+                                        <p>Légume</p>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
+
+                                        {
+                                            [1,2,3,4].map( (item, index) => {
+                                                return ( 
+                                                    <div className="flex flex-col">
+                                                    <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
+                                                    <div className="flex flex-row mt-4">
+                                                        <div className="flex flex-row justify-around w-full">
+                                                            <div>
+                                                                <div className="mb-3 font-medium flex items-center gap-1">
+                                                                    <div className="text-md md:text-2xl font-bold font-mono">
+                                                                        100
+                                                                    </div>
+                                                                    <div>
+                                                                        <img src={"calories.png"} width={36}></img>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="mb-3 font-medium font-mono">
+                                                                    150g
+                                                                </div>
+                                                                <div>
+                                                                    <img src={"/Nutri-score-A.png"} width={64}></img>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <img className="rounded-lg" src={"https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE="} width={128}></img>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div className="p-1 flex flex-wrap gap-4 text-xs md:text-sm mt-4">
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Oeuf</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Oeuf</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Lactose</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Oeuf</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Arachide</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                )
+                                            })
+                                        }
+        
+                                        </div>
+                                    </div>
+
+                                    <div className="p-2 text-lg text-gray-800/80">
+                                        <p>Condiment</p>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
+
+                                        {
+                                            [1,2,3,4].map( (item, index) => {
+                                                return ( 
+                                                    <div className="flex flex-col">
+                                                    <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
+                                                    <div className="flex flex-row mt-4">
+                                                        <div className="flex flex-row justify-around w-full">
+                                                            <div>
+                                                                <div className="mb-3 font-medium flex items-center gap-1">
+                                                                    <div className="text-md md:text-2xl font-bold font-mono">
+                                                                        100
+                                                                    </div>
+                                                                    <div>
+                                                                        <img src={"calories.png"} width={36}></img>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="mb-3 font-medium font-mono">
+                                                                    150g
+                                                                </div>
+                                                                <div>
+                                                                    <img src={"/Nutri-score-A.png"} width={64}></img>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <img className="rounded-lg" src={"https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE="} width={128}></img>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div className="p-1 flex flex-wrap gap-4 text-xs md:text-sm mt-4">
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Oeuf</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Oeuf</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Lactose</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Oeuf</p>
+                                                        </div>
+                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                            <p className="text-center font-medium">Arachide</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                )
+                                            })
+                                        }
+        
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         )
