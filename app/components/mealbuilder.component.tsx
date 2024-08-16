@@ -90,72 +90,20 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                 {
                     new Array(parseInt(offerTypeSelected)).fill("").map((_, index) => {
                         return ( 
-                            <div className="mt-4 p-2">
+                            <div className="mt-[7em] p-2">
                                 <div className="text-2xl font-bold">
                                     Repas {index+1}
                                 </div> 
 
-                                {/* <div className="mt-5 px-3">
-                                    <div className="mt-3 mb-3">
-                                        <p className="text-xl text-zinc-800/60">Protéine</p>
-                                        <div className="flex flex-col gap-2 md:px-1">
+                                <div className="cursor-pointer" onClick={e => console.log(index)}>
 
-                                            <div className="bg-white w-full p-1">
-                                                <p className="text-xl flex justify-center">Carotte Rapée Basilic</p>
-                                                <div className="flex  mt-2">
-                                                    <div className="w-full flex flex-col">
-                                                        <div className="mb-2 text-lg font-medium">89 Kcal</div>
-                                                        <div className="mb-2">
-                                                            <img src={"/Nutri-score-A.png"} width={64}></img>
-                                                        </div>
-                                                    </div>
-                                                    <div className="w-full flex justif-center">
-                                                        <img src="https://t3.ftcdn.net/jpg/00/43/99/18/360_F_43991864_HPDlXyU3T3pPD1pV5pTXNfFB4O6wyjt6.jpg" width={128}></img>
-                                                    </div>
-                                                </div>
+                                    <div className="p-2 text-lg text-gray-800/80">
 
-                                                <div className="p-2">
-                                                    <div className="grid grid-cols-4 items-center gap-1">
-                                                        <div className="bg-red-600 rounded-lg p-1  text-center shadow-md">
-                                                            <div className="text-sm text-white font-medium">
-                                                                Oeuf
-                                                            </div>
-                                                        </div>
-                                                        <div className="bg-red-600 rounded-lg p-1  text-center shadow-md">
-                                                            <div className="text-sm text-white font-medium">
-                                                                Lactose
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div className="flex justify-center md:justify-end mb-3 p-2">
+                                            <div className="bg-red-600/20 rounded-lg shadow-md p-2">
+                                                <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Protéine</p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="mt-3 mb-3">
-                                        <p className="text-xl text-zinc-800/60">Légume</p>
-                                        <div className="flex flex-row gap-4">
-                                            <div>Top1</div>
-                                            <div>Top1</div>
-                                            <div>Top1</div>
-                                            <div>Top1</div>
-                                        </div>
-                                    </div>
-                                    <div className="mt-3 mb-3">
-                                        <p className="text-xl text-zinc-800/60">Condiment</p>
-                                        <div className="flex flex-row gap-4">
-                                            <div>Top1</div>
-                                            <div>Top1</div>
-                                            <div>Top1</div>
-                                            <div>Top1</div>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-
-                                <div className="">
-
-                                    <div className="p-2 text-lg text-gray-800/80">
-                                        <p>Protéine</p>
 
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
 
@@ -212,10 +160,17 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         </div>
                                     </div>
 
-
+                                    <div className="flex justify-center">
+                                        <hr className="w-3/4 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                                    </div>
                                     
                                     <div className="p-2 text-lg text-gray-800/80">
-                                        <p>Légume</p>
+
+                                        <div className="flex justify-center md:justify-end mb-3 p-2">
+                                            <div className="bg-green-600/20 rounded-lg shadow-md p-2">
+                                                <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Légume</p>
+                                            </div>
+                                        </div>
 
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
 
@@ -272,8 +227,18 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         </div>
                                     </div>
 
+                                    <div className="flex justify-center">
+                                        <hr className="w-3/4 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                                    </div>
+                                    
                                     <div className="p-2 text-lg text-gray-800/80">
-                                        <p>Condiment</p>
+
+                                        <div className="flex justify-center md:justify-end mb-3 p-2">
+                                            <div className="bg-yellow-600/20 rounded-lg shadow-md p-2">
+                                                <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Condiment</p>
+                                            </div>
+                                        </div>
+
 
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
 
