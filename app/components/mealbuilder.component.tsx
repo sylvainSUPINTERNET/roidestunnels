@@ -2,6 +2,17 @@ import { FaWeightScale } from "react-icons/fa6"
 import { FiAlertOctagon, FiArrowLeft } from "react-icons/fi"
 
 export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : {offerTypeSelected: string, setCurrentPage: React.Dispatch<React.SetStateAction<string>>, pack:any}) {
+
+
+    function selectTopping(e:any, type: "protein" | "vegetable" | "condiment", topping: {
+        _id: string; name: string; calories: number; weight: number; nutriScore: string; imageUrl: string; allergens: string[]
+    }, mealIndex: number) {
+        console.log("FN - SELECTED TOPPING ", type, topping._id, "repas ", mealIndex)
+
+        console.log("FN " , e.target.parentElement);
+    }
+
+
     return ( 
         <div>
 
@@ -13,93 +24,27 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                     }
                 </p>
             </div>
-
-{/* 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-
-                {
-                    new Array(parseInt(offerTypeSelected)).fill("").map((_, index) => {
-
-                        return (
-                            <div className="bg-white p-4 rounded-lg" key={index}>
-                            <p className="text-2xl font-bold">Repas {index}</p>
-
-                            <div className="mt-5 px-3">
-                                <div className="mt-3 mb-3">
-                                    <p className="text-xl text-zinc-800/60">Protéine</p>
-                                    <div className="flex flex-col gap-2 md:px-1">
-
-                                        <div className="bg-white w-full p-1">
-                                            <p className="text-xl flex justify-center">Carotte Rapée Basilic</p>
-                                            <div className="flex  mt-2">
-                                                <div className="w-full flex flex-col">
-                                                    <div className="mb-2 text-lg font-medium">89 Kcal</div>
-                                                    <div className="mb-2">
-                                                        <img src={"/Nutri-score-A.png"} width={64}></img>
-                                                    </div>
-                                                </div>
-                                                <div className="w-full flex justif-center">
-                                                    <img src="https://t3.ftcdn.net/jpg/00/43/99/18/360_F_43991864_HPDlXyU3T3pPD1pV5pTXNfFB4O6wyjt6.jpg" width={128}></img>
-                                                </div>
-                                            </div>
-
-                                            <div className="p-2">
-                                                <div className="grid grid-cols-4 items-center gap-1">
-                                                    <div className="bg-red-600 rounded-lg p-1  text-center shadow-md">
-                                                        <div className="text-sm text-white font-medium">
-                                                            Oeuf
-                                                        </div>
-                                                    </div>
-                                                    <div className="bg-red-600 rounded-lg p-1  text-center shadow-md">
-                                                        <div className="text-sm text-white font-medium">
-                                                            Lactose
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mt-3 mb-3">
-                                    <p className="text-xl text-zinc-800/60">Légume</p>
-                                    <div className="flex flex-row gap-4">
-                                        <div>Top1</div>
-                                        <div>Top1</div>
-                                        <div>Top1</div>
-                                        <div>Top1</div>
-                                    </div>
-                                </div>
-                                <div className="mt-3 mb-3">
-                                    <p className="text-xl text-zinc-800/60">Condiment</p>
-                                    <div className="flex flex-row gap-4">
-                                        <div>Top1</div>
-                                        <div>Top1</div>
-                                        <div>Top1</div>
-                                        <div>Top1</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        )
-                    })
-                }
-            </div> */}
+            <div className="p-2 flex flex-col items-center mt-2 md:mt-0">
+                <div className="text-bold text-xl px-3">4 toppings par repas</div>
+                <div className="px-8 text-md text-gray-800/80">1 protéine</div>
+                <div className="px-8 text-md text-gray-800/80">Légume et condiment illimités</div>
+            </div>
 
 
             <div className="flex flex-col mt-5">
                 {
-                    new Array(parseInt(offerTypeSelected)).fill("").map((_, index) => {
+                    new Array(parseInt(offerTypeSelected)).fill("").map((_, indexMeal) => {
                         return ( 
-                            <div className="mt-[7em] p-2">
-                                <div className="text-2xl font-bold">
-                                    Repas {index+1}
+                            <div className="p-2">
+                                <div className="text-2xl font-bold text-black/60">
+                                    Repas {indexMeal+1}
                                 </div> 
 
-                                <div className="cursor-pointer" onClick={e => console.log(index)}>
+                                <div>
 
                                     <div className="p-2 text-lg text-gray-800/80">
 
-                                        <div className="flex justify-center md:justify-end mb-3 p-2">
+                                        <div className="flex justify-center md:justify-start mb-3 p-2">
                                             <div className="bg-red-600/20 rounded-lg shadow-md p-2">
                                                 <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Protéine</p>
                                             </div>
@@ -108,49 +53,82 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
 
                                         {
-                                            [1,2,3,4].map( (item, index) => {
+                                            [
+                                                {
+                                                "_id": "1",
+                                                "name": "Poulet Curry Japonais",
+                                                "calories": 100,
+                                                "weight": 150,
+                                                "nutriScore": "A",
+                                                "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "2",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "B",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "3",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "C",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "4",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "D",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                } 
+                                            ].map( (topping, index) => {
                                                 return ( 
-                                                    <div className="flex flex-col">
-                                                    <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
+                                                <div className="flex flex-col" key={index}>
+                                                    <div className="cursor-pointer" id={`protein_${indexMeal+1}_${index}`} onClick={e => selectTopping(e, "protein", topping, indexMeal+1)}>
+                                                    <p className="text-md md:text-xl font-bold text-center mb-2">{topping.name}</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
                                                             <div>
                                                                 <div className="mb-3 font-medium flex items-center gap-1">
                                                                     <div className="text-md md:text-2xl font-bold font-mono">
-                                                                        100
+                                                                        {topping.calories}
                                                                     </div>
                                                                     <div>
                                                                         <img src={"calories.png"} width={36}></img>
                                                                     </div>
                                                                 </div>
                                                                 <div className="mb-3 font-medium font-mono">
-                                                                    150g
+                                                                    {topping.weight}g
                                                                 </div>
                                                                 <div>
-                                                                    <img src={"/Nutri-score-A.png"} width={64}></img>
+                                                                    <img src={`/Nutri-score-${topping.nutriScore}.png`} width={64}></img>
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                <img className="rounded-lg" src={"https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE="} width={128}></img>
+                                                                <img className="rounded-lg" src={topping.imageUrl} width={128}></img>
                                                             </div>
                                                         </div>  
                                                     </div>
                                                     <div className="p-1 flex flex-wrap gap-4 text-xs md:text-sm mt-4">
-                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
-                                                            <p className="text-center font-medium">Oeuf</p>
-                                                        </div>
-                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
-                                                            <p className="text-center font-medium">Oeuf</p>
-                                                        </div>
-                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
-                                                            <p className="text-center font-medium">Lactose</p>
-                                                        </div>
-                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
-                                                            <p className="text-center font-medium">Oeuf</p>
-                                                        </div>
-                                                        <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
-                                                            <p className="text-center font-medium">Arachide</p>
-                                                        </div>
+                                                        {
+                                                            topping.allergens.map((allergen, index) => {
+                                                                return ( 
+                                                                    <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
+                                                                        <p className="text-center font-medium">{allergen}</p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
                                                     </div>
                                                 </div>
                                                 )
@@ -166,7 +144,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                     
                                     <div className="p-2 text-lg text-gray-800/80">
 
-                                        <div className="flex justify-center md:justify-end mb-3 p-2">
+                                        <div className="flex justify-center md:justify-start mb-3 p-2">
                                             <div className="bg-green-600/20 rounded-lg shadow-md p-2">
                                                 <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Légume</p>
                                             </div>
@@ -178,6 +156,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                             [1,2,3,4].map( (item, index) => {
                                                 return ( 
                                                     <div className="flex flex-col">
+                                                    <div className="cursor-pointer" onClick={e => console.log("CLICKED ON LEGUME ", item, "repas ", indexMeal+1)}>
                                                     <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
@@ -219,6 +198,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                                             <p className="text-center font-medium">Arachide</p>
                                                         </div>
                                                     </div>
+                                                    </div>
                                                 </div>
                                                 )
                                             })
@@ -233,7 +213,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                     
                                     <div className="p-2 text-lg text-gray-800/80">
 
-                                        <div className="flex justify-center md:justify-end mb-3 p-2">
+                                        <div className="flex justify-center md:justify-start mb-3 p-2">
                                             <div className="bg-yellow-600/20 rounded-lg shadow-md p-2">
                                                 <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Condiment</p>
                                             </div>
@@ -246,6 +226,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                             [1,2,3,4].map( (item, index) => {
                                                 return ( 
                                                     <div className="flex flex-col">
+                                                    <div className="cursor-pointer" onClick={e => console.log("CLICKED ON CONDIMENT ", item, "repas ", indexMeal+1)}>
                                                     <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
@@ -286,6 +267,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                                         <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
                                                             <p className="text-center font-medium">Arachide</p>
                                                         </div>
+                                                    </div>
                                                     </div>
                                                 </div>
                                                 )
