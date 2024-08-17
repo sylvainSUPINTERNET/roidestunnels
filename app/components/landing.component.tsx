@@ -34,9 +34,9 @@ export default function Landing({mealsData, productsData}: {mealsData:any, produ
     <main className="container mx-auto">
 
 
-    <button onClick={ e => { setShowMenuMeals(!showMenuMeals) }}>
+    {/* <button onClick={ e => { setShowMenuMeals(!showMenuMeals) }}>
         CXLICK 
-    </button>
+    </button> */}
 
     
 

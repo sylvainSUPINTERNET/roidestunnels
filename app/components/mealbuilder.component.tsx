@@ -1,33 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaWeightScale } from "react-icons/fa6"
 import { FiAlertOctagon, FiArrowLeft } from "react-icons/fi"
 
 export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : {offerTypeSelected: string, setCurrentPage: React.Dispatch<React.SetStateAction<string>>, pack:any}) {
+    
+    /**
+     * {
+     * "meal_1": {
+     *    "protein": [] // list of _id
+     *    "vegetable": []
+     *    "condiment": []
+     *   }
+     * }
+     * 
+     */
+    let [mealsSelectionMap, setMealsSelectionMap] = useState<any>({})
 
 
-    function selectTopping(e:any, type: "protein" | "vegetable" | "condiment", topping: {
+    function updateMealsSelectionMap(e:any, type: "protein" | "vegetable" | "condiment", topping: {
         _id: string; name: string; calories: number; weight: number; nutriScore: string; imageUrl: string; allergens: string[]
     }, mealIndex: number) {
         console.log("FN - SELECTED TOPPING ", type, topping._id, "repas ", mealIndex)
 
-        console.log("FN " , e.target.parentElement);
+        if ( mealsSelectionMap[`meal_${mealIndex}`] === undefined ) {
+            setMealsSelectionMap((prevState: any) => ({
+                ...prevState,
+                [`meal_${mealIndex}`]: {
+                    [type]: [
+                        topping._id
+                    ]
+                }
+            }));
+        } else {
+            setMealsSelectionMap((prevState: any) => {
+                const existingToppings = prevState[`meal_${mealIndex}`][type] || [];
+                return {
+                    ...prevState,
+                    [`meal_${mealIndex}`]: {
+                        ...prevState[`meal_${mealIndex}`],
+                        [type]: Array.from(new Set([...existingToppings, topping._id])) // Utilisation de Set pour éviter les doublons
+                    }
+                };
+            });
+        }
+
     }
 
 
-    /**
-     * {
-     * "1": {
-     *     "protein": [] // list of _id
-     *    "vegetable": []
-     *   "condiment": []}
-     * 
-     */
 
-    let [mealsSelectionMap, setMealsSelectionMap] = useState<any>({})
 
+
+    useEffect( () => {
+        console.log("Loading ");
+    }, [])
 
     return ( 
         <div>
+
+
+            {
+                JSON.stringify(mealsSelectionMap)
+            }
 
             <div onClick={ e => {setCurrentPage("main")}} className="cursor-pointer flex items-center p-2">
                 <FiArrowLeft fontSize={36} className=" bg-white p-1 "/>
@@ -48,7 +81,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                 {
                     new Array(parseInt(offerTypeSelected)).fill("").map((_, indexMeal) => {
                         return ( 
-                            <div className="p-2">
+                            <div className="p-2" key={indexMeal}>
                                 <div className="text-2xl font-bold text-black/60">
                                     Repas {indexMeal+1}
                                 </div> 
@@ -60,6 +93,118 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         <div className="flex justify-center md:justify-start mb-3 p-2">
                                             <div className="bg-red-600/20 rounded-lg shadow-md p-2">
                                                 <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Protéine</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
+
+
+                                            { 
+                                                mealsSelectionMap.hasOwnProperty(`meal_${indexMeal+1}`) 
+                                                && mealsSelectionMap[`meal_${indexMeal+1}`].hasOwnProperty("protein") 
+                                                && mealsSelectionMap[`meal_${indexMeal+1}`]["protein"].length > 0 
+                                                && mealsSelectionMap[`meal_${indexMeal+1}`]["protein"].filter( (topping: any) => topping === "1").length > 0
+                                                && (
+                                                    <p>disable other</p>
+                                                )
+
+                                            }
+
+                                        {
+                                            [
+                                                {
+                                                "_id": "1",
+                                                "name": "Poulet Curry Japonais",
+                                                "calories": 100,
+                                                "weight": 150,
+                                                "nutriScore": "A",
+                                                "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "2",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "B",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "3",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "C",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "4",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "D",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                } 
+                                            ].map( (topping, index) => {
+                                                return ( 
+                                                <div className="flex flex-col" key={index}>
+                                                    <div className="cursor-pointer bg-white p-1 rounded-lg" id={`protein_${indexMeal+1}_${index}`} onClick={e => updateMealsSelectionMap(e, "protein", topping, indexMeal+1)}>
+                                                    <p className="text-md md:text-xl font-bold text-center mb-2">{topping.name}</p>
+                                                    <div className="flex flex-row mt-4">
+                                                        <div className="flex flex-row justify-around w-full">
+                                                            <div>
+                                                                <div className="mb-3 font-medium flex items-center gap-1">
+                                                                    <div className="text-md md:text-2xl font-bold font-mono">
+                                                                        {topping.calories}
+                                                                    </div>
+                                                                    <div>
+                                                                        <img src={"calories.png"} width={36}></img>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="mb-3 font-medium font-mono">
+                                                                    {topping.weight}g
+                                                                </div>
+                                                                <div>
+                                                                    <img src={`/Nutri-score-${topping.nutriScore}.png`} width={64}></img>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <img className="rounded-lg" src={topping.imageUrl} width={128}></img>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div className="p-1 flex flex-wrap gap-4 text-xs md:text-sm mt-4">
+                                                        {
+                                                            topping.allergens.map((allergen, index) => {
+                                                                return ( 
+                                                                    <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1" key={index}>
+                                                                        <p className="text-center font-medium">{allergen}</p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                )
+                                            })
+                                        }
+        
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-center">
+                                        <hr className="w-3/4 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                                    </div>
+                                    
+                                    <div className="p-2 text-lg text-gray-800/80">
+
+                                        <div className="flex justify-center md:justify-start mb-3 p-2">
+                                            <div className="bg-green-600/20 rounded-lg shadow-md p-2">
+                                                <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Légume</p>
                                             </div>
                                         </div>
 
@@ -105,71 +250,8 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                                 } 
                                             ].map( (topping, index) => {
                                                 return ( 
-                                                <div className="flex flex-col" key={index}>
-                                                    <div className="cursor-pointer" id={`protein_${indexMeal+1}_${index}`} onClick={e => selectTopping(e, "protein", topping, indexMeal+1)}>
-                                                    <p className="text-md md:text-xl font-bold text-center mb-2">{topping.name}</p>
-                                                    <div className="flex flex-row mt-4">
-                                                        <div className="flex flex-row justify-around w-full">
-                                                            <div>
-                                                                <div className="mb-3 font-medium flex items-center gap-1">
-                                                                    <div className="text-md md:text-2xl font-bold font-mono">
-                                                                        {topping.calories}
-                                                                    </div>
-                                                                    <div>
-                                                                        <img src={"calories.png"} width={36}></img>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="mb-3 font-medium font-mono">
-                                                                    {topping.weight}g
-                                                                </div>
-                                                                <div>
-                                                                    <img src={`/Nutri-score-${topping.nutriScore}.png`} width={64}></img>
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <img className="rounded-lg" src={topping.imageUrl} width={128}></img>
-                                                            </div>
-                                                        </div>  
-                                                    </div>
-                                                    <div className="p-1 flex flex-wrap gap-4 text-xs md:text-sm mt-4">
-                                                        {
-                                                            topping.allergens.map((allergen, index) => {
-                                                                return ( 
-                                                                    <div className="bg-gray-200/80 rounded-lg shadow-md border-1 border-zinc-200/80 p-1">
-                                                                        <p className="text-center font-medium">{allergen}</p>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                )
-                                            })
-                                        }
-        
-                                        </div>
-                                    </div>
-
-                                    <div className="flex justify-center">
-                                        <hr className="w-3/4 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-                                    </div>
-                                    
-                                    <div className="p-2 text-lg text-gray-800/80">
-
-                                        <div className="flex justify-center md:justify-start mb-3 p-2">
-                                            <div className="bg-green-600/20 rounded-lg shadow-md p-2">
-                                                <p className="mt-2 text-md md:text-2xl font-medium text-zince-800">Légume</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
-
-                                        {
-                                            [1,2,3,4].map( (item, index) => {
-                                                return ( 
-                                                    <div className="flex flex-col">
-                                                    <div className="cursor-pointer" onClick={e => console.log("CLICKED ON LEGUME ", item, "repas ", indexMeal+1)}>
+                                                    <div className="flex flex-col" key={index}>
+                                                    <div className="cursor-pointer bg-white p-1 rounded-lg" onClick={e => updateMealsSelectionMap(e, "vegetable", topping, indexMeal+1)}>
                                                     <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
@@ -236,10 +318,49 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
 
                                         {
-                                            [1,2,3,4].map( (item, index) => {
+                                            [
+                                                {
+                                                "_id": "1",
+                                                "name": "Poulet Curry Japonais",
+                                                "calories": 100,
+                                                "weight": 150,
+                                                "nutriScore": "A",
+                                                "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "2",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "B",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "3",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "C",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                },
+                                                {
+                                                    "_id": "4",
+                                                    "name": "Poulet Curry Japonais",
+                                                    "calories": 100,
+                                                    "weight": 150,
+                                                    "nutriScore": "D",
+                                                    "imageUrl": "https://media.istockphoto.com/id/1183970158/fr/photo/fond-de-carottes-coup%C3%A9es-en-fines-lani%C3%A8res-pour-les-marin%C3%A9s-salade-crue-de-carottes-cor%C3%A9ennes.jpg?s=612x612&w=0&k=20&c=ZCBKb9PAsm5zUjogdhj9q8NSw0vTwY_9KXGtL3tSkCE=",
+                                                    "allergens": ["Oeuf", "Lactose", "Arachide"]
+                                                } 
+                                            ].map( (topping, index) => {
                                                 return ( 
-                                                    <div className="flex flex-col">
-                                                    <div className="cursor-pointer" onClick={e => console.log("CLICKED ON CONDIMENT ", item, "repas ", indexMeal+1)}>
+                                                    <div className="flex flex-col" key={index}>
+
+                                                    
+                                                    <div className="cursor-pointer bg-white p-1 rounded-lg" onClick={e => updateMealsSelectionMap(e, "condiment", topping, indexMeal+1)}>
                                                     <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
