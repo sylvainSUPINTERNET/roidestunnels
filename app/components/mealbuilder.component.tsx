@@ -4,63 +4,42 @@ import { FiAlertOctagon, FiArrowLeft } from "react-icons/fi"
 
 export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : {offerTypeSelected: string, setCurrentPage: React.Dispatch<React.SetStateAction<string>>, pack:any}) {
     
-    /**
-     * {
-     * "meal_1": {
-     *    "protein": [] // list of _id
-     *    "vegetable": []
-     *    "condiment": []
-     *   }
-     * }
-     * 
-     */
-    let [mealsSelectionMap, setMealsSelectionMap] = useState<any>({})
+
+     let [ selected, setSelected] = useState<Set<string>>(new Set()); 
 
 
     function updateMealsSelectionMap(e:any, type: "protein" | "vegetable" | "condiment", topping: {
         _id: string; name: string; calories: number; weight: number; nutriScore: string; imageUrl: string; allergens: string[]
     }, mealIndex: number) {
-        console.log("FN - SELECTED TOPPING ", type, topping._id, "repas ", mealIndex)
 
-        if ( mealsSelectionMap[`meal_${mealIndex}`] === undefined ) {
-            setMealsSelectionMap((prevState: any) => ({
-                ...prevState,
-                [`meal_${mealIndex}`]: {
-                    [type]: [
-                        topping._id
-                    ]
-                }
-            }));
-        } else {
-            setMealsSelectionMap((prevState: any) => {
-                const existingToppings = prevState[`meal_${mealIndex}`][type] || [];
-                return {
-                    ...prevState,
-                    [`meal_${mealIndex}`]: {
-                        ...prevState[`meal_${mealIndex}`],
-                        [type]: Array.from(new Set([...existingToppings, topping._id])) // Utilisation de Set pour éviter les doublons
-                    }
-                };
+        
+        const key = buildKey(topping._id, type, mealIndex);
+
+        if ( selected.size > 0 ) {
+    
+            setSelected(prevSet => {
+                const newSet = new Set([...Array.from(prevSet), key]);
+                return newSet;
             });
+    
+        } else {
+            setSelected(new Set([key]));
         }
 
+    };
+
+    
+    const buildKey = (id:string,  type: "protein" | "vegetable" | "condiment", index:number):string => {
+        return `${id}@${type}@${index}`;
     }
 
 
-
-
-
     useEffect( () => {
-        console.log("Loading ");
+
     }, [])
 
     return ( 
         <div>
-
-
-            {
-                JSON.stringify(mealsSelectionMap)
-            }
 
             <div onClick={ e => {setCurrentPage("main")}} className="cursor-pointer flex items-center p-2">
                 <FiArrowLeft fontSize={36} className=" bg-white p-1 "/>
@@ -98,17 +77,23 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 mt-3">
 
+{/* 
+                                        { 
+                                            mealsSelectionMap.hasOwnProperty(`meal_${indexMeal+1}`) 
+                                            && mealsSelectionMap[`meal_${indexMeal+1}`].hasOwnProperty("protein") 
+                                            && mealsSelectionMap[`meal_${indexMeal+1}`]["protein"].length > 0 
+                                            && mealsSelectionMap[`meal_${indexMeal+1}`]["protein"].filter( (topping: any) => topping === "1").length > 0
+                                            && (
+                                                <p>disable other</p>
+                                            )
 
-                                            { 
-                                                mealsSelectionMap.hasOwnProperty(`meal_${indexMeal+1}`) 
-                                                && mealsSelectionMap[`meal_${indexMeal+1}`].hasOwnProperty("protein") 
-                                                && mealsSelectionMap[`meal_${indexMeal+1}`]["protein"].length > 0 
-                                                && mealsSelectionMap[`meal_${indexMeal+1}`]["protein"].filter( (topping: any) => topping === "1").length > 0
-                                                && (
-                                                    <p>disable other</p>
-                                                )
+                                        }
 
-                                            }
+                                                                    
+                                        {
+                                            JSON.stringify(mealsSelectionMap)
+                                        }
+ */}
 
                                         {
                                             [
@@ -152,7 +137,14 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                                 return ( 
                                                 <div className="flex flex-col" key={index}>
                                                     <div className="cursor-pointer bg-white p-1 rounded-lg" id={`protein_${indexMeal+1}_${index}`} onClick={e => updateMealsSelectionMap(e, "protein", topping, indexMeal+1)}>
-                                                    <p className="text-md md:text-xl font-bold text-center mb-2">{topping.name}</p>
+                                                    <p className="text-md md:text-xl font-bold text-center mb-2">{topping.name}
+                                                    
+                                                    {
+                                                        selected.size > 0 && selected.has(buildKey(topping._id, "protein", indexMeal+1)) && (
+                                                            <span>selected</span>
+                                                        )
+                                                    }
+                                                    </p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
                                                             <div>

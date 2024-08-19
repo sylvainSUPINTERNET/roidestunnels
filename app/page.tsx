@@ -7,12 +7,14 @@ import Landing from "./components/landing.component";
 
 export default async function Home() {
 
+  // TODO gerer l'erreur de chien puant ici
   const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1');
   let data = await resp.json();
 
 
   const productApiResp = await fetch( (process.env.NEXT_PUBLIC_API_NURISH as string) + '/stripe/products', {
-    cache: 'no-cache'
+    cache: 'no-cache' 
+
   });
   let productData = await productApiResp.json();
 
