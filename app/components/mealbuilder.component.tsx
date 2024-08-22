@@ -12,8 +12,40 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
         _id: string; name: string; calories: number; weight: number; nutriScore: string; imageUrl: string; allergens: string[]
     }, mealIndex: number) {
 
-        
         const key = buildKey(topping._id, type, mealIndex);
+
+        if ( selected.has(key) ) {
+            setSelected(prevSet => {
+                const newSet = new Set([...Array.from(prevSet).filter( (value) => value !== key)]);
+                return newSet;
+            });
+
+            return;
+        }
+
+        
+        let count:number = 0;
+        let proteinCount: number = 0;
+        console.log(key);
+        selected.forEach( (value) => {
+            const [mealPosition, type, row] = value.split("@");
+            if ( mealIndex === parseInt(row) ) {
+                count++
+            }
+            if ( type === "protein" && mealIndex === parseInt(row) ) {
+                proteinCount++
+            }
+        });
+
+        if ( proteinCount > 0 && type === "protein" ) {
+            alert("1 protein only")
+            return;
+        }
+
+        if ( count > 3 ) {
+            alert("4 toppings only for meal : " + mealIndex)
+            return;
+        }
 
         if ( selected.size > 0 ) {
     
