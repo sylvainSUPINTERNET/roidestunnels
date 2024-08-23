@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaWeightScale } from "react-icons/fa6"
 import { FiAlertOctagon, FiArrowLeft } from "react-icons/fi"
@@ -38,7 +39,27 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
         });
 
         if ( proteinCount > 0 && type === "protein" ) {
-            alert("1 protein only")
+            // Remove the protein
+
+            selected.forEach( currentKey => {
+                const [mealPosition, currentType, row] = currentKey.split("@");
+                // Removoe the protein already selected
+                if ( mealIndex === parseInt(row) && currentType === "protein" ) {
+                    setSelected(prevSet => {
+                        const newSet = new Set([...Array.from(prevSet).filter( (value) => value !== currentKey)]);
+                        return newSet;
+                    });
+                }
+                // take the new one
+                setSelected(prevSet => {
+                    const newSet = new Set([...Array.from(prevSet), key]);
+                    return newSet;
+                });
+    
+            })
+            
+            //alert("1 protein only")
+
             return;
         }
 
@@ -66,13 +87,26 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
     }
 
 
+    const disableCard = (topping:any, indexMeal:number, type: "protein" | "vegetable" | "condiment"): string => {
+
+        if ( selected.size > 0 && selected.has(buildKey(topping._id, type, indexMeal+1)) ) {
+            return "bg-gradient-to-r from-rose-100/40  via-teal-100 to-rose-200/40 border-2 border-slate-300";
+        }
+
+        return ``;
+    }
+
+
+
+
     useEffect( () => {
 
     }, [])
 
+
     return ( 
         <div>
-
+            
             <div onClick={ e => {setCurrentPage("main")}} className="cursor-pointer flex items-center p-2">
                 <FiArrowLeft fontSize={36} className=" bg-white p-1 "/>
                 <p className="text-2xl bg-white p-1 text-zinc-600/80" >
@@ -93,7 +127,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                     new Array(parseInt(offerTypeSelected)).fill("").map((_, indexMeal) => {
                         return ( 
                             <div className="p-2" key={indexMeal}>
-                                <div className="text-2xl font-bold text-black/60">
+                                <div className="text-2xl font-bold text-black/60 text-center mt-4">
                                     Repas {indexMeal+1}
                                 </div> 
 
@@ -168,14 +202,19 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                             ].map( (topping, index) => {
                                                 return ( 
                                                 <div className="flex flex-col" key={index}>
-                                                    <div className="cursor-pointer bg-white p-1 rounded-lg" id={`protein_${indexMeal+1}_${index}`} onClick={e => updateMealsSelectionMap(e, "protein", topping, indexMeal+1)}>
+                                                    <div className={`cursor-pointer bg-white p-1 rounded-lg
+                                                                         ${disableCard(topping, indexMeal, "protein")}
+                                                                          p-2
+                                                                         `
+                                                                    }  
+                                                                    id={`protein_${indexMeal+1}_${index}`} onClick={e => updateMealsSelectionMap(e, "protein", topping, indexMeal+1)}>
                                                     <p className="text-md md:text-xl font-bold text-center mb-2">{topping.name}
                                                     
-                                                    {
+                                                    {/* {
                                                         selected.size > 0 && selected.has(buildKey(topping._id, "protein", indexMeal+1)) && (
                                                             <span>selected</span>
                                                         )
-                                                    }
+                                                    } */}
                                                     </p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
@@ -220,10 +259,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         </div>
                                     </div>
 
-                                    <div className="flex justify-center">
-                                        <hr className="w-3/4 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-                                    </div>
-                                    
+
                                     <div className="p-2 text-lg text-gray-800/80">
 
                                         <div className="flex justify-center md:justify-start mb-3 p-2">
@@ -275,7 +311,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                             ].map( (topping, index) => {
                                                 return ( 
                                                     <div className="flex flex-col" key={index}>
-                                                    <div className="cursor-pointer bg-white p-1 rounded-lg" onClick={e => updateMealsSelectionMap(e, "vegetable", topping, indexMeal+1)}>
+                                                    <div className={`cursor-pointer bg-white p-1 rounded-lg ${disableCard(topping, indexMeal, "vegetable")} p-2`} onClick={e => updateMealsSelectionMap(e, "vegetable", topping, indexMeal+1)}>
                                                     <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
@@ -326,10 +362,6 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         </div>
                                     </div>
 
-                                    <div className="flex justify-center">
-                                        <hr className="w-3/4 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-                                    </div>
-                                    
                                     <div className="p-2 text-lg text-gray-800/80">
 
                                         <div className="flex justify-center md:justify-start mb-3 p-2">
@@ -384,7 +416,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                                     <div className="flex flex-col" key={index}>
 
                                                     
-                                                    <div className="cursor-pointer bg-white p-1 rounded-lg" onClick={e => updateMealsSelectionMap(e, "condiment", topping, indexMeal+1)}>
+                                                    <div className={`cursor-pointer bg-white p-1 rounded-lg ${disableCard(topping, indexMeal, "condiment")} p-2`} onClick={e => updateMealsSelectionMap(e, "condiment", topping, indexMeal+1)}>
                                                     <p className="text-md md:text-xl font-bold text-center mb-2">Poulet Curry Japonais</p>
                                                     <div className="flex flex-row mt-4">
                                                         <div className="flex flex-row justify-around w-full">
@@ -433,6 +465,12 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                                         }
         
                                         </div>
+
+                                        <div className="flex justify-center">
+                                            <hr className="w-3/4 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                                        </div>
+                                    
+
                                     </div>
 
 
