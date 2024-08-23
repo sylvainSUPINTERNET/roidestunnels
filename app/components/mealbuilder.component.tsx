@@ -14,6 +14,8 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
         _id: string; name: string; calories: number; weight: number; nutriScore: string; imageUrl: string; allergens: string[]
     }, mealIndex: number) {
 
+
+        console.log(mealIndex)
         const key = buildKey(topping._id, type, mealIndex);
 
         if ( selected.has(key) ) {
@@ -99,9 +101,10 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
 
     const detectAllFilled = () => {
-        // TODO => rajouter dans les meta data number de repas
-        // virer le truck hardcodé ligne 126 
-        // l'idée c'est que on fait max_topping * number de repas si egal au size de selected c'est que tout est bien remplis on peut passer au paiement
+        const mealsMax = pack.metadata.offerTypeMetadata;
+        if ((mealsMax*max_topping_per_meal) === selected.size) {
+            return true;
+        }
     }
 
 
@@ -114,7 +117,6 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
     return ( 
         <div>
             
-            {JSON.stringify(pack)}
             <div onClick={ e => {setCurrentPage("main")}} className="cursor-pointer flex items-center p-2">
                 <FiArrowLeft fontSize={36} className=" bg-white p-1 "/>
                 <p className="text-2xl bg-white p-1 text-zinc-600/80" >
@@ -124,7 +126,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                 </p>
             </div>
             <div className="p-2 flex flex-col items-center mt-2 md:mt-0">
-                <div className="text-bold text-xl px-3">4 toppings par repas</div>
+                <div className="text-bold text-xl px-3">{pack.metadata.offerTypeMetadata} toppings par repas</div>
                 <div className="px-8 text-md text-gray-800/80">1 protéine</div>
                 <div className="px-8 text-md text-gray-800/80">Légume et condiment illimités</div>
             </div>
