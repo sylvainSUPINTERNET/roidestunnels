@@ -67,7 +67,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
         }
 
         if ( count > 3 ) {
-            alert("4 toppings only for meal : " + mealIndex)
+            alert(`4 ingrédients max pour le Repas ${mealIndex}`)
             return;
         }
 
@@ -103,7 +103,9 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
     const detectAllFilled = () => {
         const mealsMax = pack.metadata.offerTypeMetadata;
         if ((mealsMax*max_topping_per_meal) === selected.size) {
-            return true;
+            return "true";
+        } else {
+            return "false";
         }
     }
 
@@ -490,6 +492,15 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                         )
                     })
                 }
+            </div>
+
+            <div className="flex justify-center mb-[5em] font-bold text-2xl">
+                {
+                    detectAllFilled()
+                }
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled={false}>
+                    Confirmer
+                </button>
             </div>
 
 
