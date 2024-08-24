@@ -14,8 +14,6 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
         _id: string; name: string; calories: number; weight: number; nutriScore: string; imageUrl: string; allergens: string[]
     }, mealIndex: number) {
 
-
-        console.log(mealIndex)
         const key = buildKey(topping._id, type, mealIndex);
 
         if ( selected.has(key) ) {
@@ -30,7 +28,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
         
         let count:number = 0;
         let proteinCount: number = 0;
-        console.log(key);
+
         selected.forEach( (value) => {
             const [mealPosition, type, row] = value.split("@");
             if ( mealIndex === parseInt(row) ) {
@@ -103,9 +101,9 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
     const detectAllFilled = () => {
         const mealsMax = pack.metadata.offerTypeMetadata;
         if ((mealsMax*max_topping_per_meal) === selected.size) {
-            return "true";
+            return true;
         } else {
-            return "false";
+            return false;
         }
     }
 
@@ -117,6 +115,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
 
     return ( 
+
         <div>
             
             <div onClick={ e => {setCurrentPage("main")}} className="cursor-pointer flex items-center p-2">
@@ -496,145 +495,35 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
             <div className="flex justify-center mb-[5em] font-bold text-2xl">
                 {
-                    detectAllFilled()
+                    detectAllFilled() && (
+                        <button 
+                            className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                            disabled={false}>
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white text-4xl bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                CONFIRMER
+                            </span>
+                        </button>
+                    )
+                    
                 }
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled={false}>
-                    Confirmer
-                </button>
+
+                {
+                    !detectAllFilled() && (
+                        <button 
+                            className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg 
+                            group bg-gradient-to-br from-purple-600 to-blue-500"
+                            disabled={true}>
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-gray-500 text-4xl bg-zinc-900 dark:bg-gray-900 rounded-md ">
+                                CONFIRMER
+                            </span>
+                        </button>
+                    )
+                }
+
+
+
+                
             </div>
-
-
-
-
-
-
-            {/* <div className="flex flex-col md:flex-row">
-
-                <div className="bg-white p-4 rounded-lg">
-                    <p className="text-2xl font-bold">Repas X</p>
-
-                    <div className="mt-5 px-3">
-                        <div>
-                            <p className="text-xl text-zinc-800/60">Protein</p>
-                            <div className="flex flex-row gap-4">
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <p className="text-xl text-zinc-800/60">Vegetable</p>
-                            <div className="flex flex-row gap-4">
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <p className="text-xl text-zinc-800/60">Condiment</p>
-                            <div className="flex flex-row gap-4">
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg">
-                    <p className="text-2xl font-bold">Repas X</p>
-
-                    <div className="mt-5 px-3">
-                        <div>
-                            <p className="text-xl text-zinc-800/60">Protein</p>
-                            <div className="flex flex-row gap-4">
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <p className="text-xl text-zinc-800/60">Vegetable</p>
-                            <div className="flex flex-row gap-4">
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <p className="text-xl text-zinc-800/60">Condiment</p>
-                            <div className="flex flex-row gap-4">
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                                <div>Top1</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div> */}
-            
-        {/*             
-            <div id="accordion-open" data-accordion="open">
-                <h2 id="accordion-open-heading-1">
-                    <button type="button" className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-open-body-1" aria-expanded="true" aria-controls="accordion-open-body-1">
-                    <span className="flex items-center"><svg className="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd"></path></svg> What is Flowbite?</span>
-                    <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-                    </svg>
-                    </button>
-                </h2>
-                <div id="accordion-open-body-1" className="hidden" aria-labelledby="accordion-open-heading-1">
-                    <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                    <p className="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                    <p className="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" className="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
-                    </div>
-                </div>
-                <h2 id="accordion-open-heading-2">
-                    <button type="button" className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-open-body-2" aria-expanded="false" aria-controls="accordion-open-body-2">
-                    <span className="flex items-center"><svg className="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd"></path></svg>Is there a Figma file available?</span>
-                    <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-                    </svg>
-                    </button>
-                </h2>
-                <div id="accordion-open-body-2" className="hidden" aria-labelledby="accordion-open-heading-2">
-                    <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                    <p className="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
-                    <p className="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" className="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classNamees from Tailwind CSS and components from Flowbite.</p>
-                    </div>
-                </div>
-                <h2 id="accordion-open-heading-3">
-                    <button type="button" className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-open-body-3" aria-expanded="false" aria-controls="accordion-open-body-3">
-                    <span className="flex items-center"><svg className="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd"></path></svg> What are the differences between Flowbite and Tailwind UI?</span>
-                    <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-                    </svg>
-                    </button>
-                </h2>
-                <div id="accordion-open-body-3" className="hidden" aria-labelledby="accordion-open-heading-3">
-                    <div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                    <p className="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
-                    <p className="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
-                    <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-                    <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                        <li><a href="https://flowbite.com/pro/" className="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
-                        <li><a href="https://tailwindui.com/" rel="nofollow" className="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
-                    </ul>
-                    </div>
-                </div>
-            </div>
-        */}
 
         </div>
     )
