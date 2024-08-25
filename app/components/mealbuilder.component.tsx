@@ -112,7 +112,21 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
     async function goToCheckout(ev:any){
         const stripe = await stripePromise;
-        console.log("hey", stripe);
+        const stripePriceId = pack.default_price.id;
+
+        const response = await fetch('/api/stripe/checkout-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({priceId: stripePriceId}),
+        });
+
+        const resp = await response.json();
+        // TODO display        
+        const { error } = await stripe!.redirectToCheckout({
+            sessionId: resp.sessionId
+        });
         
     }  
 
@@ -123,8 +137,7 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
 
     return ( 
 
-        <div>
-            
+        <div>            
             <div onClick={ e => {setCurrentPage("main")}} className="cursor-pointer flex items-center p-2">
                 <FiArrowLeft fontSize={36} className=" bg-white p-1 "/>
                 <p className="text-2xl bg-white p-1 text-zinc-600/80" >
