@@ -1,10 +1,12 @@
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaWeightScale } from "react-icons/fa6"
-import { FiAlertOctagon, FiArrowLeft } from "react-icons/fi"
+import { FiArrowLeft } from "react-icons/fi"
+import { loadStripe } from '@stripe/stripe-js';
+
 
 export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : {offerTypeSelected: string, setCurrentPage: React.Dispatch<React.SetStateAction<string>>, pack:any}) {
     
+    const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
+
     const max_topping_per_meal:number = 4;
 
      let [ selected, setSelected] = useState<Set<string>>(new Set()); 
@@ -108,6 +110,11 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
     }
 
 
+    async function goToCheckout(ev:any){
+        const stripe = await stripePromise;
+        console.log("hey", stripe);
+        
+    }  
 
     useEffect( () => {
 
@@ -497,10 +504,11 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                 {
                     detectAllFilled() && (
                         <button 
-                            className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
-                            disabled={false}>
+                            className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
+                            shadow-lg"
+                            disabled={false}  onClick={goToCheckout}>
                             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-white text-4xl bg-zinc-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                CONFIRMER
+                                COMMANDER
                             </span>
                         </button>
                     )
@@ -511,10 +519,10 @@ export default function MealBuilder({offerTypeSelected, setCurrentPage, pack} : 
                     !detectAllFilled() && (
                         <button 
                             className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 text-sm font-medium text-gray-900 rounded-lg 
-                            group bg-gradient-to-br from-purple-600 to-blue-500"
+                            group bg-gray-500 shadow-lg"
                             disabled={true}>
-                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-gray-500 text-4xl bg-zinc-900 dark:bg-gray-900 rounded-md ">
-                                CONFIRMER
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 text-gray-500 text-4xl bg-zinc-300 dark:bg-gray-900 rounded-md">
+                                COMMANDER
                             </span>
                         </button>
                     )
