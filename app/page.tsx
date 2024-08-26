@@ -18,6 +18,7 @@ export default async function Home() {
   });
   let productData = await productApiResp.json();
 
+  console.log("PUTIN", productData);
 
   // MOCK 
   data  = {

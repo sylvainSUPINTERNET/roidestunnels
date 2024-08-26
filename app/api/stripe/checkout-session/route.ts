@@ -14,9 +14,17 @@ export async function POST(req: Request) {
                 quantity: 1,
               },
             ],
+            phone_number_collection: {
+              enabled: true,
+            },
             mode: 'payment',
             success_url: `${req.headers.get("origin")}/?success=true`,
             cancel_url: `${req.headers.get("origin")}/?canceled=true`,
+            shipping_address_collection: {
+              allowed_countries: ['FR']
+            }
+
+            //automatic_tax: {enabled: true}
           });
         
         return Response.json({ sessionId: session.id }, { status: 200 });
