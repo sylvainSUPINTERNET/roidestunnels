@@ -53,7 +53,7 @@ export default function PriceTable({productsData}:{productsData: any}) {
                         </h2>
         
                         <p className="mx-6 text-center font-bold font-mono text-xl text-slate-600/80 md:text-2xl">
-                            Préparer vos repas et faites vous livrer dans l'heure !
+                            Préparer vos repas et faites vous livrer dans l&apos;heure !
                         </p> 
                 </motion.div>
             )
