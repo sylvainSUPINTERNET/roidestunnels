@@ -3,11 +3,15 @@ import { AcmeLogo } from "./AcmeLogo";
 import { IoMdCart } from "react-icons/io";
 
 const Header = () => {
+
+    
+
     return (
         <div
             className="glass"
         >
             <Navbar>
+                
                 <NavbarBrand>
                     <AcmeLogo />
                     <p className="font-bold text-inherit text-2xl">Nurish</p>
@@ -29,19 +33,18 @@ const Header = () => {
                     </Link>
                     </NavbarItem> */}
                 </NavbarContent>
+                                        {/*
                 <NavbarContent justify="end">
-{/*                     
-                    <NavbarItem className="hidden lg:flex">
-                    <Link href="#">Login</Link>
-                    </NavbarItem> */}
-
                     <NavbarItem>
+
                     <Button as={Link} color="primary" href="#" variant="flat" endContent={<IoMdCart size={18}/>}>
                         Panier
                     </Button>
+
                     </NavbarItem>
 
                 </NavbarContent>
+                                     */}
             </Navbar>
         </div>
     );
