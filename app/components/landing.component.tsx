@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import { FiAlertOctagon } from "react-icons/fi";
 import PriceTable from "./price-table.component";
+import Image from 'next/image'
 
 export default function Landing({mealsData, productsData}: {mealsData:any, productsData: any}) {
 
@@ -166,7 +167,11 @@ export default function Landing({mealsData, productsData}: {mealsData:any, produ
 
 
 
+
+
       <div className="flex justify-center mt-10">
+
+
         <motion.div 
                 initial="hidden"
                 animate="visible"
