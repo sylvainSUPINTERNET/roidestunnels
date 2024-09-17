@@ -29,14 +29,13 @@ const OrderRefundBtn = ({jobDetail}: {jobDetail:any}) => {
 
     return (
         <button 
-        disabled={disabled}
-        onClick={ () => checkRefundPossible()}
-        className="text-xl md:text-2xl absolute bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow
-        top-3 right-[20%] md:right-[25%]"
-        // style={{ top: '5%', left: '25%' }}
-        >
-        Annuler la livraison
+            disabled={disabled}
+            onClick={ () => checkRefundPossible()}
+            className={`text-xl md:text-2xl absolute py-2 px-4 border rounded shadow top-3 right-[20%] md:right-[25%]
+            ${disabled ? 'bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed' : 'bg-white hover:bg-gray-100 text-gray-800 border-gray-400'}`}>
+            Annuler la livraison
         </button>
+
     );
 }
 

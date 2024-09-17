@@ -1,6 +1,11 @@
 import OrderRefundBtn from "@/app/components/orderRefundBtn";
 
+
+
 export default async function Page({ params }: { params: { job_id: string } }) {
+
+
+    // TODO probleme ici il faut gerer l'erreur sinon ça part en couille ( exemple avec 100657606 )
 
     const data = await fetch(`${process.env.NEXT_PUBLIC_API_STUART}/jobs/${params.job_id}`)
     const {jobDetail} = await data.json();
